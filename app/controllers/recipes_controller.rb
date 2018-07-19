@@ -9,10 +9,6 @@ class RecipesController < ApplicationController
   def show
     @ingredient = Ingredient.new
     @step = Step.new
-    @ingredients = Ingredient.all
-    @ingredients.each do |ingredient|
-      ingredient = ingredient.amount.to_i if ingredient.amount == ingredient.amount.to_i
-    end
   end
 
   def new
