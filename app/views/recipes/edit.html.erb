@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <%= form_for(@recipe) do |f| %>
+      <div class="col-md-6 col-md-offset-3">
+        <div class="new_recipe_form">
+
+          <% if @recipe.errors.any? %>
+            <div class="form_error">
+              <ul>
+                <% @recipe.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= f.text_field :title, :placeholder => "Recipe Title", :required => 'required' %>
+
+          <%= f.text_area :description, :placeholder => "Recipe Description", :required => 'required' %>
+
+          <%= f.file_field :cover, :class => 'file_field' %>
+
+          <%= f.submit 'Save Changes', :class => 'create_recipe_button' %>
+          <a href="/recipes/<%= "#{@recipe.id}" %>"><button class="create_recipe_button">Cancel</button></a>
+        </div>
+    <% end %>
+    </div>
+  </div>
+</div>
