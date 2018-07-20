@@ -165,7 +165,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
-  mini_magick (~> 4.8)
+  mini_magick
   pg (>= 0.18, < 2.0)
   puma (~> 3.0)
   rails (~> 5.0.7)

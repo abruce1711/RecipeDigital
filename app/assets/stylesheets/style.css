@@ -133,15 +133,41 @@ nav a {
     height: 25px;
 }
 
-.recipes {margin-top: 5%;}
+.recipes {margin-top: 1%;}
+
 .recipe {
     background: #339999;
     transition: .2s all;
     border-radius: 5px;
-    height: 100px;
     color: white;
+    height: 400px;
+    margin-top: 20px;
 }
-.recipe:hover {transform: scale(1.1);}
+
+.recipe_content {
+    display: block;
+    margin: -15px auto;
+    width: 96%;
+    height: 50%;
+}
+
+.recipe_content p {
+    margin-top: -10px;
+}
+
+.recipe_thumbnail {
+    border-radius: 5px 5px 0 0;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.recipe_thumbnail_wrapper {
+    height: 60%;
+    overflow: hidden;
+}
+
+.recipe:hover {transform: scale(1.04);}
 
 .recipe_heading {
     text-align: center;
