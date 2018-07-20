@@ -1,14 +1,14 @@
 <div class="container recipes">
   <div class="row">
     <% @recipes.each do |recipe| %>
-      <a href="/recipes/<%= recipe.id %>">
+      <%= link_to recipe do %>
         <div class="col-md-4">
           <div class="recipe">
             <h3><%= recipe.title  %></h3>
             <p><%= recipe.description %></p>
           </div>
         </div>
-      </a>
+      <% end %>
     <% end %>
   </div>
 </div>
