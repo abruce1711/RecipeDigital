@@ -11,6 +11,12 @@ class Recipe < ApplicationRecord
     slug
   end
 
+  def destroy_recipe
+    self.ingredients.destroy_all
+    self.steps.destroy_all
+    self.destroy
+  end
+
   private
   def capitalize
     self.title = self.title.capitalize
@@ -21,10 +27,10 @@ class Recipe < ApplicationRecord
     pattern = self.title.parameterize
     duplicates = Recipe.where("slug LIKE ?", "#{pattern}")
 
-    unless duplicates.empty?
-      self.slug = "#{pattern}-#{duplicates.count+1}"
-    else
+    if duplicates.empty?
       self.slug = pattern
+    else
+      self.slug = "#{pattern}-#{duplicates.count+1}"
     end
   end
 end
