@@ -167,7 +167,7 @@ nav a {
     overflow: hidden;
 }
 
-.recipe:hover {transform: scale(1.04);}
+.recipe:hover {transform: scale(1.03);}
 
 .recipe_heading {
     text-align: center;

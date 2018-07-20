@@ -41,7 +41,7 @@
             <%= f.text_field :item%>
             <%= f.number_field :amount, :placeholder => 'Amount', :required => 'required', :step => 0.25 %>
             <%= f.select :measurement, %w(Measurement N/A g kg oz ml L cup(s))%>
-
+            <br>
             <%= f.submit 'Save', :class => 'submit_buttons' %>
             <button type="button" class="submit_buttons" onclick='cancel_ingredient_edit(<%= "#{ingredient.id}" %>)'>Cancel</button>
           <% end %>
