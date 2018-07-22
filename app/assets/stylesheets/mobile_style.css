@@ -1,0 +1,84 @@
+/*Bigger mobiles/tablets*/
+@media handheld, screen and (max-width: 800px) {
+    a{text-decoration: none !important;}
+    .desktop_nav {display: none;}
+    .mobile_nav {
+        height: 110%;
+        margin-top: -10%;
+        width: 60%;
+        box-shadow: 2px 2px 5px #888888;
+        transition: all .3s ease-in-out;
+        background-color: #339999;
+        float: left;
+        position: fixed;
+        -webkit-transform: translateZ(0);
+        display: block;
+        z-index: 0;
+        color: white;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .mobile_nav_items {
+        z-index: 6;
+        color: white;
+        margin: 100px 0 0 0;
+        font-size: 25px;
+        width: 100% !important;
+    }
+
+    .mobile_nav_item:hover {
+       background: white;
+       color: #339999 !important;
+    }
+
+    .mobile_nav_item a:hover {color: #339999 !important;}
+
+    /*button ------------*/
+    .menuButton {
+        display: inline-block;
+        cursor: pointer;
+        position: fixed;
+        z-index: 10;
+        margin-left: 10px;
+        margin-top: -15px;
+    }
+
+    #bar1, #bar2, #bar3 {
+        width: 35px;
+        height: 5px;
+        background-color: #339999;
+        margin: 6px 0;
+        transition: 0.4s;
+        border: 1px solid;
+    }
+
+    /* Rotate first bar */
+    .change #bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+        transform: rotate(-45deg) translate(-9px, 6px) ;
+        -ms-transform: rotate(45deg) translate(-8px, -8px) ;
+        background-color: white;
+    }
+
+    /* Fade out the second bar */
+    .change #bar2 {
+        opacity: 0;
+    }
+
+    /* Rotate last bar */
+    .change #bar3 {
+        -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+        transform: rotate(45deg) translate(-8px, -8px) ;
+        -ms-transform: rotate(45deg) translate(-8px, -8px) ;
+        background-color: white;
+    }
+
+    .recipe_buttons {
+        margin: 20px 0 -20px 0;
+    }
+
+    .description, .ingredients, .steps {margin: 0 5px 0 5px}
+
+    .menuButton {margin-bottom: 10% !important;}
+}

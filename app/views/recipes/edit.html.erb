@@ -21,7 +21,7 @@
           <%= f.file_field :cover, :class => 'file_field' %>
 
           <%= f.submit 'Save Changes', :class => 'create_recipe_button' %>
-          <a href="/recipes/<%= "#{@recipe.id}" %>"><button class="create_recipe_button">Cancel</button></a>
+          <%= link_to @recipe do %><button class="create_recipe_button">Cancel</button><% end %>
         </div>
     <% end %>
     </div>
