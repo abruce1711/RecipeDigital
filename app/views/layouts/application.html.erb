@@ -21,14 +21,13 @@
     <% end %>
     <nav class = "desktop_nav">
         <div class="nav_logo_container">
-          <%= link_to 'Go-Recipe', '/', :class => 'nav_logo' %>
+          <%= link_to 'Recipe-Go', '/', :class => 'nav_logo' %>
         </div>
         <div class="nav_items">
           <%= link_to 'New Recipe', '/create_recipe', :class => 'nav_item' %>
           <%= link_to 'Recipes', '/', :class => 'nav_item' %>
         </div>
     </nav>
-
     <div class="menuButton" id="menuButton" onclick="decide(this);">
       <div id = "bar1"></div>
       <div id = "bar2"></div>
@@ -40,6 +39,9 @@
         <div class="mobile_nav_item"><%= link_to 'Recipes', '/' %><span style = "float: right; padding-right: 2%;">></span></div>
       </div>
     </nav>
+    <div class="mobile_logo">
+      <strong><h1>Recipe-G0</h1></strong>
+    </div>
     <%= yield %>
   </div>
   <footer class="footer">

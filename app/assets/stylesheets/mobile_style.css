@@ -12,7 +12,7 @@
         float: left;
         position: fixed;
         -webkit-transform: translateZ(0);
-        display: block;
+        display: block !important;
         z-index: 0;
         color: white;
         visibility: hidden;
@@ -34,6 +34,12 @@
 
     .mobile_nav_item a:hover {color: #339999 !important;}
 
+    .mobile_logo {
+        text-align: center;
+        color: #339999;
+        display: block !important;
+    }
+
     /*button ------------*/
     .menuButton {
         display: inline-block;
@@ -41,7 +47,7 @@
         position: fixed;
         z-index: 10;
         margin-left: 10px;
-        
+
     }
 
     #bar1, #bar2, #bar3 {
@@ -74,9 +80,9 @@
         background-color: white;
     }
 
-    .recipe_buttons {
-        margin: 20px 0 -20px 0;
-    }
+    .recipe{margin: 0 5px 0 5px}
+
+    .recipe_buttons {margin: 20px 0 -20px 0;}
 
     .description, .ingredients, .steps {margin: 0 5px 0 5px}
 

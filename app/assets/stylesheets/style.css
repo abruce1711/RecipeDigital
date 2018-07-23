@@ -6,6 +6,8 @@ html body {
     margin: 0;
 }
 
+.mobile_logo {display:none;}
+.mobile_nav {display: none;}
 .wrapper {
     min-height: calc(100vh - 50px);
     padding-bottom: 100px;
