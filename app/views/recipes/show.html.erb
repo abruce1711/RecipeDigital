@@ -23,8 +23,12 @@
         <p class="content">No ingredients have been added!</p>
       <% else %>
         <% @recipe.ingredients.each do |ingredient| %>
+          <% if ingredient.measurement == 'N/A' %>
+            <p class="content" id="<%= "ingredient_#{ingredient.id}" %>"><%= "%g" % ingredient.amount.to_s + " " + ingredient.item %></p>
+          <% else %>
+            <p class="content" id="<%= "ingredient_#{ingredient.id}" %>"><%= "%g" % ingredient.amount.to_s + ingredient.measurement + " " + ingredient.item %></p>
+          <% end %>
 
-          <p class="content" id="<%= "ingredient_#{ingredient.id}" %>"><%= "%g" % ingredient.amount.to_s + ingredient.measurement + " " + ingredient.item %></p>
 
           <%= form_for ingredient, :html => {:id =>  "edit_ingredient_#{ingredient.id}"} do |f| %>
 

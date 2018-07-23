@@ -9,8 +9,6 @@ class Ingredient < ApplicationRecord
   def check_measurement
     if self.measurement == 'Measurement'
       self.errors.add(:base, "Please select measurement, if not needed select N/A")
-    elsif self.measurement == 'N/A'
-      self.measurement = ''
     end
   end
 
