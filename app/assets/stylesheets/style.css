@@ -284,9 +284,3 @@ nav a {
     background: red;
     color: white;
 }
-
-.form_error li {
-    color: red;
-    font-size: 16px;
-    list-style-type: none;
-}

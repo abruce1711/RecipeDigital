@@ -1,5 +1,4 @@
 var clicks = 0;
-
 document.addEventListener("turbolinks:load", function () {
     clicks = 0;
 });
@@ -29,7 +28,7 @@ function cancel_ingredient_edit(id) {
 }
 
 function decide(x) {
-    if (clicks == 0) {
+    if (clicks === 0) {
         document.getElementById("mobile_nav").style.visibility = "visible";
         document.getElementById("mobile_nav").style.opacity = "1";
         document.getElementById("mobile_nav").style.zIndex = "5";
@@ -39,7 +38,7 @@ function decide(x) {
         clicks = 1;
     }
 
-    else if (clicks == 1) {
+    else if (clicks === 1) {
         document.getElementById("mobile_nav").style.visibility = "hidden";
         document.getElementById("mobile_nav").style.opacity = "0";
         document.getElementById("mobile_nav").style.zIndex = "0";

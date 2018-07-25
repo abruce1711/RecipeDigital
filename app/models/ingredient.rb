@@ -3,15 +3,9 @@ class Ingredient < ApplicationRecord
 
   validates_presence_of :item
   validates_presence_of :amount
-  validate :check_measurement, :capitalize, :trim_amount_zeros
+  validate :capitalize, :trim_amount_zeros
 
   private
-  def check_measurement
-    if self.measurement == 'Measurement'
-      self.errors.add(:base, "Please select measurement, if not needed select N/A")
-    end
-  end
-
   def capitalize
     self.item = self.item.capitalize
   end

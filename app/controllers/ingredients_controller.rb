@@ -13,7 +13,8 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     else
-      render 'recipes/show'
+      flash[:error] = "Error in ingredients form"
+      redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     end
   end
 
@@ -27,7 +28,8 @@ class IngredientsController < ApplicationController
     if @ingredient.update(ingredient_params)
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     else
-      render 'recipes/show', :anchor => 'ingredients'
+      flash[:error] = "Error in ingredients form"
+      redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     end
   end
 

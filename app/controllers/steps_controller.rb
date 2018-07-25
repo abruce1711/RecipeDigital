@@ -9,7 +9,8 @@ class StepsController < ApplicationController
     if @step.save
       redirect_to recipe_path(@recipe, :anchor => 'steps')
     else
-      render 'recipes/show'
+      flash[:error] = "Error in ingredients form"
+      redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     end
   end
 
@@ -19,8 +20,12 @@ class StepsController < ApplicationController
   end
 
   def update
-    @step.update(step_params)
-    redirect_to recipe_path(@recipe, :anchor => 'steps')
+    if @step.update(step_params)
+      redirect_to recipe_path(@recipe, :anchor => 'steps')
+    else
+      flash[:error] = "Error in ingredients form"
+      redirect_to recipe_path(@recipe, :anchor => 'ingredients')
+    end
   end
 
   private
