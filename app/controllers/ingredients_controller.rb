@@ -27,7 +27,7 @@ class IngredientsController < ApplicationController
     if @ingredient.update(ingredient_params)
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     else
-      render 'recipes/show'
+      render 'recipes/show', :anchor => 'ingredients'
     end
   end
 
