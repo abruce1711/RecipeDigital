@@ -16,16 +16,24 @@
 
   <body>
   <div class="wrapper">
-    <% if flash[:error] %>
-      <div class="error"><%= flash[:error] %></div>
-    <% end %>
     <nav class = "desktop_nav">
         <div class="nav_logo_container">
           <%= link_to 'Recipe-Go', '/', :class => 'nav_logo' %>
         </div>
         <div class="nav_items">
-          <%= link_to 'New Recipe', '/create_recipe', :class => 'nav_item' %>
-          <%= link_to 'Recipes', '/', :class => 'nav_item' %>
+          <%= link_to 'All Recipes', '/', :class => 'nav_item' %>
+          <% if user_signed_in? %>
+            <%= link_to 'My Recipes', '/my_recipes', :class => 'nav_item' %>
+            <%= link_to 'New Recipe', '/create_recipe', :class => 'nav_item' %>
+            <div class="right_nav_items">
+              <%= link_to "Log Out", destroy_user_session_path, :method => 'delete', :class => 'nav_item' %>
+            </div>
+          <% else %>
+            <div class="right_nav_items">
+              <%= link_to "Log In", new_user_session_path, :class => 'nav_item' %>
+              <%= link_to "Sign Up", new_user_registration_path, :class => 'nav_item' %>
+            </div>
+          <% end %>
         </div>
     </nav>
     <div class="menuButton" id="menuButton" onclick="decide(this);">
@@ -35,14 +43,29 @@
     </div>
     <nav class = "mobile_nav" id="mobile_nav">
       <div class="mobile_nav_items">
-        <div class="mobile_nav_item"><%= link_to 'New Recipe', '/create_recipe' %><span style = "float: right; padding-right: 2%;">></span></div>
-        <div class="mobile_nav_item"><%= link_to 'Recipes', '/' %><span style = "float: right; padding-right: 2%;">></span></div>
+        <div class="mobile_nav_item"><%= link_to 'All Recipes', '/' %><span style = "float: right; padding-right: 2%;">></span></div>
+        <% if user_signed_in? %>
+          <div class="mobile_nav_item"><%= link_to 'My Recipes', '/my_recipes' %><span style = "float: right; padding-right: 2%;">></span></div>
+          <div class="mobile_nav_item"><%= link_to 'New Recipe', '/create_recipe' %><span style = "float: right; padding-right: 2%;">></span></div>
+          <div class="mobile_nav_item"><%= link_to "Log Out", destroy_user_session_path, :method => 'delete' %><span style = "float: right; padding-right: 2%;">></span></div>
+        <% else %>
+          <div class="mobile_nav_item"><%= link_to "Log In", new_user_session_path %><span style = "float: right; padding-right: 2%;">></span></div>
+          <div class="mobile_nav_item"><%= link_to "Sign Up", new_user_registration_path %><span style = "float: right; padding-right: 2%;">></span></div>
+        <% end %>
       </div>
     </nav>
     <div class="mobile_logo">
       <strong><h1>Recipe-G0</h1></strong>
     </div>
     <%= yield %>
+    <% if flash[:notice] %>
+      <script>remove_flash()</script>
+      <div id="notification" class="notice_flash"><p class="notice"><%= notice %></p></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <script>remove_flash()</script>
+      <div id="notification" class="alert_flash"><p class="alert"><%= alert %></p></div>
+    <% end %>
   </div>
   <footer class="footer">
     <div class="footer_content">

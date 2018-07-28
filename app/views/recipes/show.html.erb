@@ -5,11 +5,13 @@
     <%= image_tag @recipe.cover.url, :class => 'cover_image' if @recipe.cover? %>
   </div>
 
-  <div class="recipe_buttons">
-    <%= link_to 'Edit', edit_recipe_path(@recipe), :class => 'edit_button' %>
-    <%= link_to 'Delete', @recipe, method: :delete, :class => 'delete_button',
-                data: {confirm: "Are you sure you want to delete the recipe for #{@recipe.title}? This can not be un-done"} %>
-  </div>
+  <% if user_signed_in? && current_user.id == @recipe.user_id %>
+    <div class="recipe_buttons">
+      <%= link_to 'Edit', edit_recipe_path(@recipe), :class => 'edit_button' %>
+      <%= link_to 'Delete', @recipe, method: :delete, :class => 'delete_button',
+                  data: {confirm: "Are you sure you want to delete the recipe for #{@recipe.title}? This can not be un-done"} %>
+    </div>
+  <% end %>
   <div class="row">
     <div class="description col-md-12">
       <h2 class="container_heading">Description</h2>
@@ -24,45 +26,54 @@
         <p class="content">No ingredients have been added!</p>
       <% else %>
         <% @recipe.ingredients.each do |ingredient| %>
-          <% if ingredient.measurement == 'N/A' %>
-            <p class="content" id="<%= "ingredient_#{ingredient.id}" %>"><%= "%g" % ingredient.amount.to_s + " " + ingredient.item %></p>
-          <% else %>
-            <p class="content" id="<%= "ingredient_#{ingredient.id}" %>"><%= "%g" % ingredient.amount.to_s + ingredient.measurement + " " + ingredient.item %></p>
-          <% end %>
+          <div <% if ingredient.id%2 == 0 %>class="even_ingredient"<% else %>class="odd_ingredient"<% end %>>
+            <% if ingredient.measurement == 'N/A' %>
+              <p class="content" id="<%= "ingredient_#{ingredient.id}" %>">* <%= "%g" % ingredient.amount.to_s + " " + ingredient.item %></p>
+            <% else %>
+              <p class="content" id="<%= "ingredient_#{ingredient.id}" %>">* <%= "%g" % ingredient.amount.to_s + ingredient.measurement + " " + ingredient.item %></p>
+            <% end %>
 
+            <% if user_signed_in? && current_user.id == @recipe.user_id %>
+              <% if @recipe.user_id == current_user.id %>
+                <%= form_for ingredient, :html => {:id =>  "edit_ingredient_#{ingredient.id}"} do |f| %>
+                  <%= f.text_field :item, :required => 'required' %>
+                  <%= f.number_field :amount, min: 0, :placeholder => 'Amount', :required => 'required', :step => 0.25 %>
+                  <%= f.select :measurement, %w(N/A g kg oz ml L cup(s)), {:include_blank => 'Measurement'}, :required => true %>
+                  <br>
+                  <!--<%= f.submit 'Save', :class => 'submit_buttons' %>-->
 
-          <%= form_for ingredient, :html => {:id =>  "edit_ingredient_#{ingredient.id}"} do |f| %>
-            <%= f.text_field :item, :required => 'required' %>
-            <%= f.number_field :amount, min: 0, :placeholder => 'Amount', :required => 'required', :step => 0.25 %>
-            <%= f.select :measurement, %w(N/A g kg oz ml L cup(s)), {:include_blank => 'Measurement'}, :required => true %>
-            <br>
-            <!--<%= f.submit 'Save', :class => 'submit_buttons' %>-->
+                  <%= f.submit 'Save', :class => 'submit_buttons' %>
+                  <button type="button" class="submit_buttons" onclick='cancel_ingredient_edit(<%= "#{ingredient.id}" %>)'>Cancel</button>
+                <% end %>
 
-            <%= f.submit 'Save', :class => 'submit_buttons' %>
-            <button type="button" class="submit_buttons" onclick='cancel_ingredient_edit(<%= "#{ingredient.id}" %>)'>Cancel</button>
-          <% end %>
-
-          <div class="content_buttons" id="ingredient_buttons_<%= "#{ingredient.id}" %>">
-            <button type="button" class="edit_button edit_step_button" onclick='edit_ingredient(<%= "#{ingredient.id}" %>)'>Edit</button>
-            <%= link_to 'Delete', ingredient, method: :delete, :class => 'delete_button'%>
-          </div><br>
+                <div class="content_buttons" id="ingredient_buttons_<%= "#{ingredient.id}" %>">
+                  <button type="button" class="edit_button edit_step_button" onclick='edit_ingredient(<%= "#{ingredient.id}" %>)'>Edit</button>
+                  <%= link_to 'Delete', ingredient, method: :delete, :class => 'delete_button'%>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <br>
         <% end %>
       <% end %>
+      <% if user_signed_in? && current_user.id == @recipe.user_id %>
+        <% if @recipe.user_id == current_user.id %>
+          <%= form_for @ingredient do |f| %>
+            <div class="ingredients_form">
 
-      <%= form_for @ingredient do |f| %>
-        <div class="ingredients_form">
+              <%= f.text_field :item, :placeholder => 'Item', :required => 'required' %>
 
-          <%= f.text_field :item, :placeholder => 'Item', :required => 'required' %>
+              <%= f.number_field :amount, min: 0, :placeholder => 'Amount', :required => 'required', :step => 0.25 %>
 
-          <%= f.number_field :amount, min: 0, :placeholder => 'Amount', :required => 'required', :step => 0.25 %>
+              <%= f.select :measurement, %w(N/A g kg oz ml L cup(s)), {:include_blank => 'Measurement'}, :required => true %>
 
-          <%= f.select :measurement, %w(N/A g kg oz ml L cup(s)), {:include_blank => 'Measurement'}, :required => true %>
-
-          <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-        </div>
-        <div>
-          <%= f.submit 'Add Ingredient +', :class => 'submit_buttons' %>
-        </div>
+              <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+            </div>
+            <div>
+              <%= f.submit 'Add Ingredient +', :class => 'submit_buttons' %>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
 
@@ -74,50 +85,60 @@
       <p class="content">No steps have been added!</p>
     <% else %>
       <% @recipe.steps.each do |step| %>
-        <p class="content" id="<%= "step_#{step.id}" %>"> <%= step.content %> </p>
-        <%= form_for step, :html => {:id =>  "edit_step_#{step.id}"} do |f| %>
+        <div <% if step.id%2 == 0 %>class="even_step"<% else %>class="odd_step"<% end %>>
+          <p class="content" id="<%= "step_#{step.id}" %>">* <%= step.content %> </p>
 
-            <% if @step.errors.any? %>
-              <div class="form_error">
-                <ul>
-                  <% @step.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
+          <% if user_signed_in? && current_user.id == @recipe.user_id %>
+            <% if @recipe.user_id == current_user.id %>
+              <%= form_for step, :html => {:id =>  "edit_step_#{step.id}"} do |f| %>
+
+                  <% if @step.errors.any? %>
+                    <div class="form_error">
+                      <ul>
+                        <% @step.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                        <% end %>
+                      </ul>
+                    </div>
                   <% end %>
-                </ul>
-              </div>
-            <% end %>
 
-            <%= f.text_field :content, :placeholder => 'Step', :required => 'required' %>
-            <%= f.submit 'Save', :class => 'submit_buttons' %>
-            <button type="button" class="submit_buttons" onclick='cancel_step_edit(<%= "#{step.id}" %>)'>Cancel</button>
-        <% end %>
-          <div class="content_buttons" id="step_buttons_<%= "#{step.id}" %>">
-            <button type="button" class="edit_button edit_step_button" onclick='edit_step(<%= "#{step.id}" %>)'>Edit</button>
-            <%= link_to 'Delete', step, method: :delete, :class => 'delete_button'%>
-          </div><br>
+                  <%= f.text_field :content, :placeholder => 'Step', :required => 'required' %>
+                  <%= f.submit 'Save', :class => 'submit_buttons' %>
+                  <button type="button" class="submit_buttons" onclick='cancel_step_edit(<%= "#{step.id}" %>)'>Cancel</button>
+              <% end %>
+                <div class="content_buttons" id="step_buttons_<%= "#{step.id}" %>">
+                  <button type="button" class="edit_button edit_step_button" onclick='edit_step(<%= "#{step.id}" %>)'>Edit</button>
+                  <%= link_to 'Delete', step, method: :delete, :class => 'delete_button'%>
+                </div>
+            <% end %>
+          <% end %>
+
+          <br>
+        </div>
       <% end %>
     <% end %>
+    <% if user_signed_in? && current_user.id == @recipe.user_id %>
+      <%= form_for @step do |f| %>
+        <div class="steps_form">
 
-    <%= form_for @step do |f| %>
-      <div class="steps_form">
+          <% if @step.errors.any? %>
+            <div class="form_error">
+              <ul>
+                <% @step.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-        <% if @step.errors.any? %>
-          <div class="form_error">
-            <ul>
-              <% @step.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+          <%= f.text_field :content, :placeholder => 'Step', :required => 'required' %>
 
-        <%= f.text_field :content, :placeholder => 'Step', :required => 'required' %>
-
-        <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-      </div>
-      <div>
-        <%= f.submit 'Add step +', :class => 'submit_buttons' %>
-      </div>
+          <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+        </div>
+        <div>
+          <%= f.submit 'Add step +', :class => 'submit_buttons' %>
+        </div>
+      <% end %>
     <% end %>
   </div>
   </div>

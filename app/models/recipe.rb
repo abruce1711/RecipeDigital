@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_many :ingredients
   has_many :steps
+  belongs_to :user, optional: true
   mount_uploader :cover, CoverUploader
 
   before_validation :generate_slug
@@ -15,6 +16,10 @@ class Recipe < ApplicationRecord
     self.ingredients.destroy_all
     self.steps.destroy_all
     self.destroy
+  end
+
+  def own_recipe(recipe, user)
+    recipe.user_id == user.id
   end
 
   private
@@ -32,5 +37,9 @@ class Recipe < ApplicationRecord
     else
       self.slug = "#{pattern}-#{duplicates.count+1}"
     end
+  end
+
+  def associate_user
+    self.user_id == current_user.id
   end
 end

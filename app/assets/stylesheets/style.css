@@ -55,6 +55,11 @@ html body {
     font-size: 18px;
 }
 
+.right_nav_items {
+    float: right;
+    margin-right: 100px;
+}
+
 .nav_item {
     transition: all .2s ease-in-out;
     padding: 100% 12px 28px 12px;
@@ -103,7 +108,7 @@ nav a {
 }
 
 .cover_image {
-    margin: 0 auto;
+    margin: 30px auto;
     display: block;
     width: 70%;
     border: 1px solid #339999;
@@ -128,6 +133,11 @@ nav a {
 
 .ingredients_form input, .steps_form input {
     color: black;
+}
+
+.steps_form input {
+    width: 100%;
+    height: 40px;
 }
 
 .ingredients_form select {
@@ -206,6 +216,22 @@ nav a {
     color: white;
 }
 
+.even_step {
+    background: #2d8282;
+    margin: 20px 0 20px 0;
+}
+
+.odd_step {
+    background: #35adad;
+}
+
+.even_ingredient {
+    background: #2d8282;
+    margin: -5px 0 -5px 0;
+}
+
+.odd_ingredient {background: #35adad;}
+
 [id^="edit_step_"], [id^="edit_ingredient_"] {
     display: none;
     padding: 0 !important;
@@ -278,9 +304,72 @@ nav a {
     color: #e5ca00;
 }
 
-.error {
+.notice_flash, .alert_flash {
+    bottom:0;
+    position:fixed;
+    z-index:150;
+    _position:absolute;
     width: 100%;
-    height: 100px;
-    background: red;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.notice_flash {
+    background: #70DA8B;
+    color: #343a40;
+}
+
+.alert_flash {
+    background: #fc5555;
     color: white;
+}
+
+.user_form_box {
+    background: #339999;
+}
+
+.user_form_items {
+    width: 90%;
+    margin: 0 auto;
+    color: white;
+}
+
+.user_form_items input:not([type='checkbox']) {
+   width: 100%;
+    height: 30px;
+    outline: none;
+    color: black;
+    border: none;
+}
+
+.user_form_items label {
+    margin-top: 10px;
+}
+
+.user_form_items input[type=submit] {
+    background: #89D7D7 !important;
+    color: black !important;
+    border: none;
+    border-radius: 3px;
+    transition: .2s all;
+    margin-top: 15px;
+}
+
+.user_form_items input[type=submit]:hover {
+    background: #81c6c6 !important;
+}
+
+.user_form_links {
+    margin-top: 20px;
+}
+
+.user_form_links a {
+    text-decoration: none !important;
+    transition: .2s all;
+    color: white;
+}
+
+.user_form_links a:hover {
+    color: #89D7D7;
 }

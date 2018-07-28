@@ -15,11 +15,13 @@ class StepsController < ApplicationController
   end
 
   def destroy
+    check_recipe_owner
     @step.destroy
     redirect_to recipe_path(@recipe, :anchor => 'steps')
   end
 
   def update
+    check_recipe_owner
     if @step.update(step_params)
       redirect_to recipe_path(@recipe, :anchor => 'steps')
     else
@@ -36,6 +38,12 @@ class StepsController < ApplicationController
   def set_step
     @step = Step.find(params[:id])
     @recipe = Recipe.find(@step.recipe_id)
+  end
+
+  def check_recipe_owner
+    if @recipe.user_id != current_user.id
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
 end

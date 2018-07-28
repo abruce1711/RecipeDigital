@@ -48,3 +48,9 @@ function decide(x) {
         clicks = 0;
     }
 }
+
+function remove_flash() {
+window.setTimeout(function() {
+    document.getElementById("notification").style.display= "none";
+}, 3500);
+}

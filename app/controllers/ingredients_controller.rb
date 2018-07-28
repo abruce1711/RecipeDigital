@@ -13,22 +13,24 @@ class IngredientsController < ApplicationController
     if @ingredient.save
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     else
-      flash[:error] = "Error in ingredients form"
+      flash[:alert] = "Error in ingredients form"
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     end
   end
 
   def destroy
+    check_recipe_owner
     @ingredient.destroy
     redirect_to recipe_path(@recipe, :anchor => 'ingredients')
   end
 
   def update
+    check_recipe_owner
     @step = Step.new
     if @ingredient.update(ingredient_params)
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     else
-      flash[:error] = "Error in ingredients form"
+      flash[:alert] = "Error in ingredients form"
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')
     end
   end
@@ -41,5 +43,11 @@ class IngredientsController < ApplicationController
   def set_ingredient
     @ingredient = Ingredient.find(params[:id])
     @recipe = Recipe.find(@ingredient.recipe_id)
+  end
+
+  def check_recipe_owner
+    if @recipe.user_id != current_user.id
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 end
