@@ -43,8 +43,8 @@
       <file leaf-file-name="_list_recipes.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/recipes/_list_recipes.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -395,12 +395,12 @@
       <workItem from="1532787001358" duration="22000" />
       <workItem from="1532787038105" duration="157000" />
       <workItem from="1532790695782" duration="26493000" />
-      <workItem from="1532819389643" duration="675000" />
+      <workItem from="1532819389643" duration="838000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="199904000" />
+    <option name="totallyTimeSpent" value="200067000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -779,8 +779,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/recipes/_list_recipes.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        <state relative-caret-position="153">
+          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="58" />
         </state>
       </provider>
     </entry>
