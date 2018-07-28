@@ -147,6 +147,16 @@ nav a {
 
 .recipes {margin-top: 1%;}
 
+.empty_heading {
+    text-align: center;
+}
+
+.empty_heading a {
+    text-decoration: none!important;
+    transition: .2s all;
+    font-size: 16px;
+}
+
 .recipe {
     background: #339999;
     transition: .2s all;
@@ -165,6 +175,7 @@ nav a {
 
 .recipe_content p {
     margin-top: -10px;
+    font-size: 18px;
 }
 
 .recipe_thumbnail {
