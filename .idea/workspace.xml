@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e64aa1b-7b3f-43be-8704-1c1d65aada8b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/confirmations/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/confirmations/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/passwords/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/passwords/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/unlocks/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/unlocks/new.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/recipes/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/recipes/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/recipes/my_recipes.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/my_recipes.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/recipes/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/recipes/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/recipes/show.html.erb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -38,8 +25,8 @@
       <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+            <state relative-caret-position="417">
+              <caret line="62" column="65" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -57,7 +44,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>magi</find>
       <find>border</find>
       <find>recipe_buttons</find>
       <find>edit_r</find>
@@ -87,6 +73,7 @@
       <find>nav_logo</find>
       <find>recipes</find>
       <find>book</find>
+      <find>Recipe-G</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\ab1\Dropbox\All_coding_stuff\ruby\rails\recipe_book\app</dir>
@@ -208,6 +195,13 @@
               <item name="recipe_book" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="recipe_book" type="b2602c69:ProjectViewProjectNode" />
+              <item name="recipe_book" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -300,6 +294,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ab1\Dropbox\All_coding_stuff\ruby\rails\recipe_book\app\assets\images" />
       <recent name="C:\Users\ab1\Dropbox\All_coding_stuff\ruby\rails\recipe_book\app\assets\stylesheets" />
     </key>
   </component>
@@ -457,12 +452,12 @@
       <workItem from="1532787001358" duration="22000" />
       <workItem from="1532787038105" duration="157000" />
       <workItem from="1532790695782" duration="26493000" />
-      <workItem from="1532819389643" duration="22173000" />
+      <workItem from="1532819389643" duration="22574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221402000" />
+    <option name="totallyTimeSpent" value="221803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -844,8 +839,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+        <state relative-caret-position="417">
+          <caret line="62" column="65" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="65" />
         </state>
       </provider>
     </entry>
