@@ -52,5 +52,5 @@ function decide(x) {
 function remove_flash() {
 window.setTimeout(function() {
     document.getElementById("notification").style.display= "none";
-}, 3500);
+}, 5000);
 }

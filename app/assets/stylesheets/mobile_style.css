@@ -27,6 +27,18 @@
         width: 100% !important;
     }
 
+    .bottom_mobile_nav_items {
+        position: absolute;
+        bottom: 6.5%;
+        width: 100%;
+        background: #6dc4c4;
+        padding-bottom: 5px;
+    }
+
+    .bottom_mobile_nav_items a:hover {
+        color: #339999 !important;
+    }
+
     .mobile_nav_item:hover {
        background: white;
        color: #339999 !important;

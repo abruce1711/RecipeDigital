@@ -9,6 +9,9 @@
           <h3><%= recipe.title  %></h3>
           <p><%= User.find(recipe.user_id).username %></p>
           <p><%= truncate(recipe.description, :length => 150, :omission => '... (click to see more)') %></p>
+          <% if !recipe.published %>
+              <p class="unpublished_tile">Unpublished - Only you can see this</p>
+          <% end %>
         </div>
       </div>
     </div>

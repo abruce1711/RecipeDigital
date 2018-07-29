@@ -18,13 +18,13 @@
   <div class="wrapper">
     <nav class = "desktop_nav">
         <div class="nav_logo_container">
-          <%= link_to 'Recipe-Go', '/', :class => 'nav_logo' %>
+          <%= link_to '/', :class => 'nav_logo' do %>Recipe<span class="logo_digital">Digital</span><% end %>
         </div>
         <div class="nav_items">
           <%= link_to 'All Recipes', '/', :class => 'nav_item' %>
+          <%= link_to 'Create Recipe', '/create_recipe', :class => 'nav_item' %>
           <% if user_signed_in? %>
             <%= link_to 'My Recipes', '/my_recipes', :class => 'nav_item' %>
-            <%= link_to 'New Recipe', '/create_recipe', :class => 'nav_item' %>
             <div class="right_nav_items">
               <%= link_to "Log Out", destroy_user_session_path, :method => 'delete', :class => 'nav_item' %>
             </div>
@@ -43,14 +43,18 @@
     </div>
     <nav class = "mobile_nav" id="mobile_nav">
       <div class="mobile_nav_items">
-        <div class="mobile_nav_item"><%= link_to 'All Recipes', '/' %><span style = "float: right; padding-right: 2%;">></span></div>
+        <%= link_to '/' do %><div class="mobile_nav_item">All Recipes<span style = "float: right; padding-right: 2%;">></span></div><% end %>
+        <%= link_to '/create_recipe' do %><div class="mobile_nav_item">Create Recipe<span style = "float: right; padding-right: 2%;">></span></div><% end %>
         <% if user_signed_in? %>
-          <div class="mobile_nav_item"><%= link_to 'My Recipes', '/my_recipes' %><span style = "float: right; padding-right: 2%;">></span></div>
-          <div class="mobile_nav_item"><%= link_to 'New Recipe', '/create_recipe' %><span style = "float: right; padding-right: 2%;">></span></div>
-          <div class="mobile_nav_item"><%= link_to "Log Out", destroy_user_session_path, :method => 'delete' %><span style = "float: right; padding-right: 2%;">></span></div>
+          <%= link_to '/my_recipes' do %><div class="mobile_nav_item">My Recipes<span style = "float: right; padding-right: 2%;">></span></div><% end %>
+          <div class="bottom_mobile_nav_items">
+            <%= link_to destroy_user_session_path, :method => 'delete' do %><div class="mobile_nav_item">Log Out<span style = "float: right; padding-right: 2%;">></span></div><% end %>
+          </div>
         <% else %>
-          <div class="mobile_nav_item"><%= link_to "Log In", new_user_session_path %><span style = "float: right; padding-right: 2%;">></span></div>
-          <div class="mobile_nav_item"><%= link_to "Sign Up", new_user_registration_path %><span style = "float: right; padding-right: 2%;">></span></div>
+          <div class="bottom_mobile_nav_items">
+            <%= link_to new_user_session_path, :class => 'bottom_mobile_nav_item' do %><div class="mobile_nav_item">Log In<span style = "float: right; padding-right: 2%;">></span></div><% end %>
+            <%= link_to new_user_registration_path, :class => 'bottom_mobile_nav_item' do %><div class="mobile_nav_item">Sign Up<span style = "float: right; padding-right: 2%;">></span></div><% end %>
+          </div>
         <% end %>
       </div>
     </nav>
@@ -69,8 +73,8 @@
   </div>
   <footer class="footer">
     <div class="footer_content">
-      &copy; Go-Recipe <span id = "date"></span> All Rights Reserved<br>
-      <a href="mailto:contant@go-recipe.com?Subject=Contact%20from%20website" style = "padding-left: 1em;">contact@go-recipe.com</a><br>
+      &copy; RecipeDigital <span id = "date"></span> All Rights Reserved<br>
+      <a href="mailto:contact@recipedigital.com?Subject=Contact%20from%20website" style = "padding-left: 1em;">contact@recipedigital.com</a><br>
     </div>
   </footer>
   </body>

@@ -50,6 +50,8 @@ html body {
     margin-right: 80px;
 }
 
+.logo_digital {color: #89D7D7;}
+
 .nav_items {
     display: inline;
     font-size: 18px;
@@ -166,6 +168,12 @@ nav a {
     margin-top: 20px;
 }
 
+.unpublished_tile {
+    background: #fc5555;
+    color: white;
+    text-align: center;
+}
+
 .recipe_content {
     display: block;
     margin: -15px auto;
@@ -194,6 +202,41 @@ nav a {
 
 .recipe_heading {
     text-align: center;
+}
+
+.publish_buttons {
+    margin: 0 auto;
+    width: 150px;
+    height: 40px;
+    display: block;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.publish_button {
+    background: #70DA8B;
+    color: #343a40;
+}
+
+.unpublish_button {
+    background: white;
+    color: #fc5555;
+    outline: none;
+}
+
+.publish_links {
+    text-decoration: none !important;
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+}
+
+.publish_desc {
+    text-align: center;
+    background: #fc5555;
+    color: white;
+    font-size: 16px;
 }
 
 .recipe_buttons {
@@ -373,6 +416,7 @@ nav a {
 
 .user_form_links {
     margin-top: 20px;
+    font-size: 18px;
 }
 
 .user_form_links a {

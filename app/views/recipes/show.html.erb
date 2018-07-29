@@ -1,6 +1,26 @@
-<div class="container">
+<% if user_signed_in? %>
+  <% if !@recipe.published && @recipe.user_id == current_user.id %>
+    <div class="col-12">
+      <p class="publish_desc">Your recipe is currently unpublished, meaning only you can see it while you make changes.
+        <br>Once you have completed the recipe publish it so everyone can enjoy!
+      </p>
+    </div>
+  <% end %>
+<% end %>
 
+<div class="container">
   <h1 class="recipe_heading"><%= @recipe.title %></h1>
+  <h3 class="recipe_heading">Posted by <%= @user.username %></h3>
+  <% if user_signed_in? %>
+    <% if current_user.id == @recipe.user_id %>
+      <% if @recipe.published %>
+        <%= link_to unpublish_recipe_path(@recipe), method: :put, class: "publish_links" do %><button type="button" class="publish_buttons unpublish_button">Unpublish recipe</button><% end %>
+      <% else %>
+        <%= link_to publish_recipe_path(@recipe), method: :put, class: "publish_links" do %><button type="button" class="publish_buttons publish_button">Publish recipe</button><% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+
   <div class="row">
     <%= image_tag @recipe.cover.url, :class => 'cover_image' if @recipe.cover? %>
   </div>
@@ -56,7 +76,7 @@
           <br>
         <% end %>
       <% end %>
-      <% if user_signed_in? && current_user.id == @recipe.user_id %>
+      <% if user_signed_in? %>
         <% if @recipe.user_id == current_user.id %>
           <%= form_for @ingredient do |f| %>
             <div class="ingredients_form">

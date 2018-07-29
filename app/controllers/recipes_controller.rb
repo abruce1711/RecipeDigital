@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :destroy, :edit, :update]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(:published => true)
   end
 
   def my_recipes
@@ -13,10 +13,29 @@ class RecipesController < ApplicationController
   def show
     @ingredient = Ingredient.new
     @step = Step.new
+    @user = User.find(@recipe.user_id)
   end
 
   def new
     @recipe = Recipe.new
+  end
+
+  def publish_recipe
+    recipe = Recipe.find_by_slug(params[:slug])
+    if recipe.publish_recipe
+      flash[:notice] = "Recipe published. This means any user can see it."
+      redirect_to recipe
+    else
+      flash[:alert] = "You must have ingredients and steps to publish recipe"
+      redirect_to recipe
+    end
+  end
+
+  def unpublish_recipe
+    recipe = Recipe.find_by_slug(params[:slug])
+    recipe.update_attributes(:published => false)
+    flash[:notice] = "Recipe unpublished. Only you can see this now."
+    redirect_to recipe
   end
 
   def create

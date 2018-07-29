@@ -22,6 +22,15 @@ class Recipe < ApplicationRecord
     recipe.user_id == user.id
   end
 
+  def publish_recipe
+    if self.steps.length == 0 || self.ingredients.length == 0
+      false
+    else
+      self.update_attributes(:published => true)
+      true
+    end
+  end
+
   private
   def capitalize
     self.title = self.title.capitalize

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/create_recipe', to: 'recipes#new'
   get 'login', to: 'devise/sessions#new'
   get 'my_recipes', to: 'recipes#my_recipes'
+  put '/recipes/:slug/publish_recipe', to: 'recipes#publish_recipe', as: 'publish_recipe'
+  put '/recipes/:slug/unpublish_recipe', to: 'recipes#unpublish_recipe', as: 'unpublish_recipe'
   resources :recipes
   resources :ingredients
   resources :steps
