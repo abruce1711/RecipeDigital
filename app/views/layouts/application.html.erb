@@ -27,6 +27,7 @@
           <% if user_signed_in? %>
             <%= link_to 'My Recipes', '/my_recipes', :class => 'nav_item' %>
             <div class="right_nav_items">
+              <%= link_to  "My Account", current_user, :class => 'nav_item' %>
               <%= link_to "Log Out", destroy_user_session_path, :method => 'delete', :class => 'nav_item' %>
             </div>
           <% else %>
