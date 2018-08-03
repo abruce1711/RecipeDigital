@@ -54,3 +54,25 @@ window.setTimeout(function() {
     document.getElementById("notification").style.display= "none";
 }, 5000);
 }
+
+function confirmEditUser(currentEmail) {
+    var form = document.getElementById('edit_user_form');
+    var email_field = document.getElementById('user_email').value;
+    if(currentEmail === email_field) {
+        form.submit();
+    } else {
+        $.confirm({
+            title: 'Changing Email Address',
+            content: 'Your email address change will only take effect once you click on the link sent to the new email.' +
+            'You can sign in with your old address until then.<br/><br/>Click confirm to proceed (You will be logged out)',
+            buttons: {
+                confirm: {
+                    btnClass: 'pop_up_confirm',
+                    action: function() {form.submit();}
+                },
+                cancel: function () {},
+            }
+        });
+    }
+
+}

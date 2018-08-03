@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :show]
 
   def show
     @user = current_user
@@ -14,8 +14,17 @@ class UsersController < ApplicationController
   def update
     check_user
     @user.update(account_update_params)
-    pp @user.errors.full_messages
-    redirect_to @user
+    if @user.errors.full_messages.length > 0
+      flash[:alert] = "#{@user.errors.full_messages}"
+      redirect_to :back
+    elsif @user.previous_changes["unconfirmed_email"]
+      sign_out @user
+      flash[:notice] = "Confirmation email sent to #{@user.previous_changes['unconfirmed_email'][1]}. Click link in email to complete change"
+      redirect_to '/'
+    else
+      flash[:notice] = "#{@user.previous_changes().first[0].split('_').map(&:capitalize).join(' ')} updated"
+      redirect_to @user
+    end
   end
 
   private

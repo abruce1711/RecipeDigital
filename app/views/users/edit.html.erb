@@ -6,7 +6,7 @@
         <div class="user_form_items">
           <h2>Edit Details</h2>
 
-          <%= form_for @user do |f|%>
+          <%= form_for @user, :html => {:id =>  "edit_user_form"} do |f|%>
 
             <div class="field">
               <%= f.label :avatar %>
@@ -34,7 +34,8 @@
             </div>
 
             <div class="actions">
-              <%= f.submit "Save Changes" %>
+              <button type="button" class="create_recipe_button" onclick='confirmEditUser(<%= "'#{@user.email}'" %>);'>Save Changes</button>
+              <%= link_to @user do %><button type="button" class="create_recipe_button" >Cancel</button><% end %>
             </div>
           <% end %>
         </div>

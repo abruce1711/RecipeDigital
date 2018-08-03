@@ -13,6 +13,11 @@ html body {
     padding-bottom: 100px;
 }
 
+.pop_up_confirm {
+    background: #339999;
+    color: white;
+}
+
 .footer {
     height: 50px;
     width: 100%;
