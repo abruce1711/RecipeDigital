@@ -8,8 +8,8 @@
     <%= stylesheet_link_tag 'style' %>
     <%= stylesheet_link_tag 'mobile_style' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'bootstrap/bootstrap.min' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Chivo" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,10 @@
           <% if user_signed_in? %>
             <%= link_to 'My Recipes', '/my_recipes', :class => 'nav_item' %>
             <div class="right_nav_items">
-              <%= link_to  "My Account", current_user, :class => 'nav_item' %>
+              <%= link_to current_user, :class => 'nav_item' do %>
+                <div class="circle_avatar_container"><%= image_tag (current_user.avatar.url :thumb), :class => 'circle_avatar' if current_user.avatar? %></div>
+                <%= current_user.first_name + ' ' + current_user.last_name  %>
+              <% end %>
               <%= link_to "Log Out", destroy_user_session_path, :method => 'delete', :class => 'nav_item' %>
             </div>
           <% else %>
@@ -87,5 +90,4 @@
       document.getElementById('date').innerHTML = (year);
       /*---------------------------------*/
   </script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </html>

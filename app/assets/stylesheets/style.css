@@ -25,6 +25,7 @@ html body {
     padding-left: 5px;
 }
 
+
 .footer_content a {
     color: white;
     text-decoration: none !important;
@@ -76,6 +77,14 @@ html body {
 nav a {
     color: white !important;
     text-decoration: none !important;
+}
+
+.circle_avatar_container {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: inline-block;
+    overflow: hidden;
 }
 
 .new_recipe_form {
@@ -428,3 +437,18 @@ nav a {
 .user_form_links a:hover {
     color: #89D7D7;
 }
+
+.avatar_container {
+    height: 400px;
+    width: 400px;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+}
+
+.avatar {
+    margin: 0 auto;
+    display: block;
+}
+
+.profile_items {text-align: center;}

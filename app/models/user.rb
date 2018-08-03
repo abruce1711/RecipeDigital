@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :recipes
   validates_uniqueness_of :username
-  mount_uploader :avatae, AvatarUploader
+  mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

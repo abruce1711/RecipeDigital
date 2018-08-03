@@ -1,24 +1,15 @@
 <% content_for :title, "#{@user.first_name + ' ' + @user.last_name}" %>
-<%= link_to 'Edit', edit_user_path(@user) %>
-<h1><%= @user.first_name + ' ' + @user.last_name %></h1>
-<h2><%= @user.username %></h2>
-<%= image_tag (@user.avatar.url), :class => 'avatar' if @user.avatar? %>
-<% @recipes.each do |recipe| %>
-  <%= link_to @recipe do %>
-    <div class="col-md-6">
-      <div class="recipe">
-        <div class="recipe_thumbnail_wrapper">
-          <%= image_tag (recipe.cover.url :thumb), :class => 'recipe_thumbnail' if recipe.cover? %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="profile_items">
+        <h1><%= @user.first_name + ' ' + @user.last_name %></h1>
+        <h2><%= @user.username %></h2>
+        <div class="avatar_container">
+          <%= image_tag (@user.avatar.url), :class => 'avatar' if @user.avatar? %>
         </div>
-        <div class="recipe_content">
-          <h3><%= recipe.title  %></h3>
-          <p><%= @user.username %></p>
-          <p><%= truncate(recipe.description, :length => 200, :omission => '... (click to see more)') %></p>
-          <% if !recipe.published %>
-            <p class="unpublished_tile">Unpublished - Only you can see this</p>
-          <% end %>
-        </div>
+        <%= link_to 'Edit', edit_user_path(@user) %>
       </div>
     </div>
-  <% end %>
-<% end %>
+  </div>
+</div>
