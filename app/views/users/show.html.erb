@@ -5,8 +5,7 @@
       <div class="profile_items">
         <h1><%= @user.first_name + ' ' + @user.last_name %></h1>
         <h2><%= @user.username %></h2>
-        <div class="avatar_container">
-          <%= image_tag (@user.avatar.url), :class => 'avatar' if @user.avatar? %>
+        <div class="avatar_container" style="background-image: url(<%= @user.avatar.url %>)">
         </div>
         <%= link_to 'Edit', edit_user_path(@user) %>
       </div>

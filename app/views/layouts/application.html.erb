@@ -28,7 +28,7 @@
             <%= link_to 'My Recipes', '/my_recipes', :class => 'nav_item' %>
             <div class="right_nav_items">
               <%= link_to current_user, :class => 'nav_item' do %>
-                <div class="circle_avatar_container"><%= image_tag (current_user.avatar.url :thumb), :class => 'circle_avatar' if current_user.avatar? %></div>
+                <div class="circle_avatar_container" style="background-image: url(<%= current_user.avatar.url :thumb %>)"></div>
                 <%= current_user.first_name + ' ' + current_user.last_name  %>
               <% end %>
               <%= link_to "Log Out", destroy_user_session_path, :method => 'delete', :class => 'nav_item' %>

@@ -63,6 +63,17 @@ html body {
     margin-right: 100px;
 }
 
+.circle_avatar_container {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: inline-block;
+    background-size: cover;
+    background-position: center center;
+    border: 1px solid;
+    vertical-align: middle;
+}
+
 .nav_item {
     transition: all .2s ease-in-out;
     padding: 100% 12px 28px 12px;
@@ -79,13 +90,7 @@ nav a {
     text-decoration: none !important;
 }
 
-.circle_avatar_container {
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: inline-block;
-    overflow: hidden;
-}
+
 
 .new_recipe_form {
     background: #339999;
@@ -441,9 +446,10 @@ nav a {
 .avatar_container {
     height: 400px;
     width: 400px;
-    overflow: hidden;
     display: block;
     margin: 0 auto;
+    background-size: cover;
+    background-position: center center;
 }
 
 .avatar {
