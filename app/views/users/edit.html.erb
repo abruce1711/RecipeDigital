@@ -33,6 +33,8 @@
               <%= f.email_field :email, autocomplete: "email" %>
             </div>
 
+
+
             <div class="actions">
               <button type="button" class="create_recipe_button" onclick='confirmEditUser(<%= "'#{@user.email}'" %>);'>Save Changes</button>
               <%= link_to @user do %><button type="button" class="create_recipe_button" >Cancel</button><% end %>
