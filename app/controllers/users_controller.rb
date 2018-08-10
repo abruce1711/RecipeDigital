@@ -33,12 +33,14 @@ class UsersController < ApplicationController
   end
 
   def account_update_params
-    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :current_password, :avatar)
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :current_password, :avatar, :bio)
   end
 
   def check_user
-    if @user.id != current_user.id
-      raise ActionController::RoutingError.new('Not Found')
+    if user_signed_in?
+      if @user.id != current_user.id
+        raise ActionController::RoutingError.new('Not Found')
+      end
     end
   end
 

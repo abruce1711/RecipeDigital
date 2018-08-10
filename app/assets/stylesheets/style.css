@@ -6,6 +6,11 @@ html body {
     margin: 0;
 }
 
+.no-text-decoration {text-decoration: none !important;}
+textarea {
+ width: 100%;
+ color: black !important;
+}
 .mobile_logo {display:none;}
 .mobile_nav {display: none;}
 .wrapper {
@@ -400,6 +405,7 @@ nav a {
 
 .user_form_box {
     background: #339999;
+    padding-bottom: 5px;
 }
 
 .user_form_items {
@@ -449,17 +455,28 @@ nav a {
 }
 
 .avatar_container {
-    height: 400px;
-    width: 400px;
+    height: 350px;
+    width: 350px;
     display: block;
-    margin: 0 auto;
     background-size: cover;
     background-position: center center;
+    margin-top: 5px;
 }
 
-.avatar {
-    margin: 0 auto;
-    display: block;
+.edit_profile_button {
+    border: none;
+    padding: 5px;
+    color: black;
+    transition: .2s all;
+    font-size: 16px;
+    box-shadow: 1px 1px #a5a5a5;
+    border-radius: 3px;
 }
 
-.profile_items {text-align: center;}
+.edit_profile_button:hover {
+    background: #c1bfbf;
+}
+
+.edit_profile_button {
+    margin-top: 20px;
+}
