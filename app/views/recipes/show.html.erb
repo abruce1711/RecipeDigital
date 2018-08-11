@@ -11,7 +11,7 @@
 
 <div class="container">
   <h1 class="recipe_heading"><%= @recipe.title %></h1>
-  <h3 class="recipe_heading">Posted by <%= @user.username %></h3>
+  <h3 class="recipe_heading">Posted by <%= link_to @user.username, @user %></h3>
   <% if user_signed_in? %>
     <% if current_user.id == @recipe.user_id %>
       <% if @recipe.published %>

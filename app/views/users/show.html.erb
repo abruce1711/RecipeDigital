@@ -1,24 +1,46 @@
 <% content_for :title, "#{@user.first_name + ' ' + @user.last_name}" %>
+<div class="profile_container">
 <div class="container">
   <div class="row">
     <div class="col-md-5">
       <div class="profile_left">
         <h2><%= @user.first_name + ' ' + @user.last_name %> - <small>@<%= @user.username %></small></h2>
-        <div class="avatar_container" style="background-image: url(<%= @user.avatar.url %>)"></div>
+        <% if @user.avatar? %>
+          <div class="avatar_container" style="background-image: url(<%= @user.avatar.url %>)"></div>
+        <% else %>
+          <div class="avatar_container" style="background-image: url(<%= asset_path 'default_avatar.jpg' %>)"></div>
+        <% end %>
       </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
       <div class="profile_right">
         <h1>Bio</h1>
-        <p><%= @user.bio %></p>
-      </div>
-    </div>
-    <div class="col-md-2">
-      <div class="edit_profile_button_container">
+        <% if @user.bio? %>
+          <p><%= @user.bio %></p>
+        <% else %>
+          <h3>No bio yet!</h3>
+        <% end %>
         <%= link_to edit_user_path(@user), class: "no-text-decoration" do %><button type="button" class="edit_profile_button">&#9998; Edit Profile</button><% end %>
       </div>
     </div>
 
     </div>
+  </div>
+</div>
+</div>
+
+<div class="container profile_recipes">
+  <div class="row">
+    <h1>Recipes by <%= @user.first_name%></h1>
+    <% if @recipes.length > 0 %>
+      <%= render 'recipes/list_recipes', recipes: @recipes %>
+    <% else %>
+      <div class="empty_heading">
+        <h3>No recipes yet!</h3>
+        <% if @user.id == current_user.id %>
+          <%= link_to "Click here to add one", '/create_recipe' %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
