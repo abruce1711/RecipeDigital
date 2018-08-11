@@ -40,6 +40,8 @@ class UsersController < ApplicationController
       if @user.id != current_user.id
         raise ActionController::RoutingError.new('Not Found')
       end
+    else
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 

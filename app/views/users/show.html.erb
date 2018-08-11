@@ -20,7 +20,11 @@
         <% else %>
           <h3>No bio yet!</h3>
         <% end %>
-        <%= link_to edit_user_path(@user), class: "no-text-decoration" do %><button type="button" class="edit_profile_button">&#9998; Edit Profile</button><% end %>
+        <% if user_signed_in? %>
+          <% if @user.id == current_user.id %>
+            <%= link_to edit_user_path(@user), class: "no-text-decoration" do %><button type="button" class="edit_profile_button">&#9998; Edit Profile</button><% end %>
+          <% end %>
+        <% end %>
       </div>
     </div>
 
