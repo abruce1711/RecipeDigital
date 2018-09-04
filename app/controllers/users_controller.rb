@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:edit, :update, :show]
+  before_action :set_user, only: [:edit, :update, :show, :account_settings]
 
   def show
     @recipes = Recipe.where(:user_id => @user.id)

@@ -24,16 +24,6 @@
             </div>
 
             <div class="field">
-              <%= f.label :username %>
-              <%= f.text_field :username %>
-            </div>
-
-            <div class="field">
-              <%= f.label :email %><br />
-              <%= f.email_field :email, autocomplete: "email" %>
-            </div>
-
-            <div class="field">
               <%= f.label :bio %><br />
               <%= f.text_area :bio, :autocomplete => :off %>
             </div>
@@ -41,7 +31,7 @@
 
 
             <div class="actions">
-              <button type="button" class="create_recipe_button" onclick='confirmEditUser(<%= "'#{@user.email}'" %>);'>Save Changes</button>
+              <button type="submit" class="create_recipe_button">Save Changes</button>
               <%= link_to @user, class: "no-text-decoration" do %><button type="button" class="create_recipe_button" >Cancel</button><% end %>
             </div>
           <% end %>

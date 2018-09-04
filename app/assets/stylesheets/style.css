@@ -144,7 +144,7 @@ nav a {
 .create_recipe_button {
     border: none;
     display: block;
-    width: 150px;
+    width: 150px !important;
     height: 30px;
     margin: 5px auto;
     background: #89D7D7;
@@ -492,4 +492,9 @@ nav a {
 .profile_recipes {
     text-align: center;
     margin: -10% 0 8% 0;
+}
+
+.cancel_account_button {
+    background: #fc5555 !important;
+    color: white !important;
 }

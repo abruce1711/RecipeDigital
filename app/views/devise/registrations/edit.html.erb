@@ -14,6 +14,11 @@
               <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
             </div>
 
+            <div class="field">
+              <%= f.label :username %>
+              <%= f.text_field :username %>
+            </div>
+
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
@@ -38,15 +43,13 @@
             </div>
 
             <div class="actions">
-              <%= f.submit "Update" %>
+              <%= f.submit "Update", :class => 'create_recipe_button' %>
             </div>
           <% end %>
 
-          <h3>Cancel my account</h3>
+          <%= link_to @user, class: "no-text-decoration" do %><button type="button" class="create_recipe_button" >Cancel</button><% end %>
+          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: 'cancel_account_button', method: :delete %>
 
-          <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-          <%= link_to "Back", :back %>
         </div>
       </div>
     </div>
