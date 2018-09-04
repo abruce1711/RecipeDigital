@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :recipes
+  has_many :comments
   validates_uniqueness_of :username
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:

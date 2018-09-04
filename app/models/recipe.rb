@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_many :ingredients
   has_many :steps
+  has_many :comments
   belongs_to :user, optional: true
   mount_uploader :cover, CoverUploader
 

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :steps
   resources :users
+  resources :comments
 
 
 end
