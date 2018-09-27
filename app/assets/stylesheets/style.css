@@ -1,7 +1,8 @@
 html body {
     /*background-color: #fcfae3;
-    font-family: 'Chivo', sans-serif;*/
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Chivo', sans-serif;
+    font-family: 'Indie Flower', cursive;*/
+    font-family: 'Courier New', sans-serif;
     height: 100%;
     margin: 0;
 }
@@ -282,11 +283,13 @@ nav a {
     color: white;
 }
 
-.comments {
-    margin-top: 5%;
-}
-
+.comments {margin-top: 5%;}
 .comments select, .comments textarea, .comment input {color: black;}
+.comment {background-color: #dbffff; color: black;}
+.rating, .comment_title, .comment_user {display: inline;}
+.rating {float:right; padding-right: 15px;}
+
+
 
 .ingredients {
     background: #339999;
