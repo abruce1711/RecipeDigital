@@ -161,6 +161,25 @@
         </div>
       <% end %>
     <% end %>
+
   </div>
   </div>
+
+  <div class="row">
+    <div class="description comments col-md-12">
+      <h2 class="container_heading">Comments</h2>
+      <%= form_for @comment do |f| %>
+        <%= f.text_field :title, :placeholder => 'Title', :required => 'required' %>
+
+        <%= f.text_area :body, :placeholder => 'Comment', :required => 'required' %>
+
+        <%= f.select :rating, %w(1 2 3 4 5), {:include_blank => 'Rating'}, :required => true %>
+
+        <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+
+        <%= f.submit 'Add Comment', :class => 'create_recipe_button' %>
+      <% end %>
+    </div>
+  </div>
+
 </div>

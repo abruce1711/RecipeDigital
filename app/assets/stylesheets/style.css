@@ -282,6 +282,12 @@ nav a {
     color: white;
 }
 
+.comments {
+    margin-top: 5%;
+}
+
+.comments select {color: black;}
+
 .ingredients {
     background: #339999;
     border-radius: 5px;

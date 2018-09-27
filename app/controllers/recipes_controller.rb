@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
     @ingredient = Ingredient.new
     @step = Step.new
     @user = User.find(@recipe.user_id)
+    @comment = Comment.new
   end
 
   def new
