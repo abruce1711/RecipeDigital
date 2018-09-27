@@ -157,7 +157,7 @@ nav a {
     background: #6dc4c4;
 }
 
-.ingredients_form input, .steps_form input {
+.ingredients_form input, .steps_form input, .comment_form input {
     color: black;
 }
 
@@ -286,7 +286,7 @@ nav a {
     margin-top: 5%;
 }
 
-.comments select {color: black;}
+.comments select, .comments textarea, .comment input {color: black;}
 
 .ingredients {
     background: #339999;

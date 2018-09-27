@@ -169,15 +169,17 @@
     <div class="description comments col-md-12">
       <h2 class="container_heading">Comments</h2>
       <%= form_for @comment do |f| %>
-        <%= f.text_field :title, :placeholder => 'Title', :required => 'required' %>
+        <div class="comment_form">
+          <%= f.text_field :title, :placeholder => 'Title', :required => 'required' %>
 
-        <%= f.text_area :body, :placeholder => 'Comment', :required => 'required' %>
+          <%= f.text_area :body, :placeholder => 'Comment', :required => 'required' %>
 
-        <%= f.select :rating, %w(1 2 3 4 5), {:include_blank => 'Rating'}, :required => true %>
+          <%= f.select :rating, %w(1 2 3 4 5), {:include_blank => 'Rating'}, :required => true %>
 
-        <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+          <%= f.hidden_field :recipe_id, :value => @recipe.id %>
 
-        <%= f.submit 'Add Comment', :class => 'create_recipe_button' %>
+          <%= f.submit 'Add Comment', :class => 'create_recipe_button' %>
+        </div>
       <% end %>
     </div>
   </div>
