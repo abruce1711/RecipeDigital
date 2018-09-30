@@ -1,10 +1,12 @@
 html body {
-    /*background-color: #fcfae3;
-    font-family: 'Chivo', sans-serif;
-    font-family: 'Indie Flower', cursive;*/
-    font-family: 'Courier New', sans-serif;
+    /*font-family: 'Indie Flower', cursive;*/
+    font-family: 'IBM Plex Serif', sans-serif;
     height: 100%;
     margin: 0;
+}
+
+.non_cursive {
+    font-family: 'IBM Plex Serif', sans-serif;
 }
 
 .no-text-decoration {text-decoration: none !important;}
@@ -19,10 +21,20 @@ textarea {
     padding-bottom: 100px;
 }
 
+.user_form_links a{
+    font-size: 16px;
+}
+
+.jconfirm-box {
+    font-family: 'IBM Plex Serif', sans-serif;
+}
+
 .pop_up_confirm {
     background: #339999;
     color: white;
+    font-size: 10px !important;
 }
+
 
 .footer {
     height: 50px;
@@ -49,7 +61,7 @@ textarea {
 
 .desktop_nav {
     width: 100%;
-    height: 80px;
+    height: 78px;
     white-space: nowrap;
     background: #339999;
     line-height: 80px;
@@ -89,6 +101,7 @@ textarea {
     transition: all .2s ease-in-out;
     padding: 100% 12px 28px 12px;
     margin-right: -5px;
+    height: 100% !important;
 }
 
 .nav_item:hover {
@@ -121,7 +134,7 @@ nav a {
 #recipe_title, #recipe_description {
     width: 90%;
     display: block;
-    font-size: 20px;
+    font-size: 18px;
     margin: 0 auto 10px;
 }
 
@@ -267,8 +280,11 @@ nav a {
 .recipe_buttons {
     font-size: 16px !important;
     background: #339999;
-    width: 100px;
+    height: 30px;
     border-radius: 5px 5px 0 0;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    text-align: center;
 }
 
 .recipe_buttons .edit_button {
@@ -285,9 +301,32 @@ nav a {
 
 .comments {margin-top: 5%;}
 .comments select, .comments textarea, .comment input {color: black;}
-.comment {background-color: #dbffff; color: black;}
+.comment {color: black; margin-bottom: 30px;}
 .rating, .comment_title, .comment_user {display: inline;}
-.rating {float:right; padding-right: 15px;}
+.rating {float:right; padding-right: 15px; font-size: 16px;}
+
+.comment_title {font-size: 18px;}
+.comment_body, .comment_user {font-size: 15px;}
+.comment_date {font-size: 12px;}
+
+.comment_title_field, .comment_body_field {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+.comment_title_field {margin-bottom: 15px;}
+.no_comments {
+    font-size: 22px;
+    text-align: center;
+}
+.comment_submit {
+    margin-top: 30px;
+}
+
+.average_rating {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
 
 
@@ -295,6 +334,7 @@ nav a {
     background: #339999;
     border-radius: 5px;
     color: white;
+    font-weight: lighter;
 }
 
 .steps {
@@ -362,7 +402,7 @@ nav a {
 
 .content {
     display: inline;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .content_buttons {
@@ -504,6 +544,6 @@ nav a {
 }
 
 .cancel_account_button {
-    background: #fc5555 !important;
+    background-color: #fc5555 !important;
     color: white !important;
 }

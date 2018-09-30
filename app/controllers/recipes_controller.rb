@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
     @step = Step.new
     @user = User.find(@recipe.user_id)
     @comment = Comment.new
+    @average = @recipe.average_rating
   end
 
   def new

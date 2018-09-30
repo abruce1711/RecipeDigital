@@ -42,8 +42,10 @@
     <% else %>
       <div class="empty_heading">
         <h3>No recipes yet!</h3>
-        <% if @user.id == current_user.id %>
-          <%= link_to "Click here to add one", '/create_recipe' %>
+        <% if user_signed_in? %>
+          <% if @user.id == current_user.id %>
+            <%= link_to "Click here to add one", '/create_recipe' %>
+          <% end %>
         <% end %>
       </div>
     <% end %>

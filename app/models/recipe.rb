@@ -32,6 +32,21 @@ class Recipe < ApplicationRecord
     end
   end
 
+  def average_rating
+    total_rating = 0.0
+    number_of_ratings = 0.0
+    if self.comments.length > 0
+      self.comments.each do |comment|
+        rating = comment.rating
+        total_rating += rating
+        number_of_ratings += 1
+      end
+      (total_rating / number_of_ratings).round
+    else
+      0
+    end
+  end
+
   private
   def capitalize
     self.title = self.title.capitalize

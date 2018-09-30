@@ -99,4 +99,10 @@
     .description, .ingredients, .steps {margin: 0 5px 0 5px}
 
     .menuButton {margin-bottom: 10% !important;}
+
+    .recipe_buttons {
+        width: 70%;
+        margin: 0 auto -30px;
+    }
 }
+
