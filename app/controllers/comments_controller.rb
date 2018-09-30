@@ -10,9 +10,27 @@ class CommentsController < ApplicationController
     redirect_to @recipe
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @recipe = Recipe.find(@comment.recipe_id)
+
+    if @comment.user_id == current_user.id
+      @comment.destroy
+      redirect_to @recipe
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
+
   private
   def comment_params
     params.require(:comment).permit(:title, :body, :rating, :recipe_id, :user_id)
+  end
+
+  def check_comment_owner
+    if @recipe.user_id != current_user.id
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
 end

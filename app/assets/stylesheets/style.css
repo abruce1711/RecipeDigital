@@ -327,6 +327,8 @@ nav a {
     margin-top: 30px;
 }
 
+.comment_delete {margin: 0!important;}
+
 .average_rating {
     text-align: center;
     margin-bottom: 30px;

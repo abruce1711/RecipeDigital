@@ -200,7 +200,13 @@
             </div>
 
             <p class="comment_date"><%= comment.created_at.strftime("%d %B %Y") %></p>
+
             <p class="comment_body"><%= comment.body %></p>
+
+            <% if user_signed_in? && current_user.id == comment.user_id %>
+              <%= link_to 'Delete Comment', comment, method: :delete, :class => 'delete_button comment_delete',
+                          data: {confirm: "Are you sure you want to delete your comment? This can not be un-done"} %>
+            <% end %>
           </div>
         <% end %>
       <% else %>
