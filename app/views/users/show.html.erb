@@ -36,12 +36,12 @@
 
 <div class="container profile_recipes">
   <div class="row">
-    <h1>Recipes by <%= @user.first_name%></h1>
+    <h1 class="profile_recipe_text">Recipes by <%= @user.first_name%></h1>
     <% if @recipes.length > 0 %>
       <%= render 'recipes/list_recipes', recipes: @recipes %>
     <% else %>
       <div class="empty_heading">
-        <h3>No recipes yet!</h3>
+        <h3 class="profile_recipe_text">No recipes yet!</h3>
         <% if user_signed_in? %>
           <% if @user.id == current_user.id %>
             <%= link_to "Click here to add one", '/create_recipe' %>

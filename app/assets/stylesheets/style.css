@@ -206,6 +206,10 @@ nav a {
     margin-top: 20px;
 }
 
+.recipe_list_rating {
+    padding-bottom: 20px;
+}
+
 .unpublished_tile {
     background: #fc5555;
     color: white;
@@ -539,9 +543,10 @@ nav a {
 }
 
 .profile_recipes {
-    text-align: center;
     margin: -10% 0 8% 0;
 }
+
+.profile_recipe_text {text-align: center;}
 
 .cancel_account_button {
     background-color: #fc5555 !important;

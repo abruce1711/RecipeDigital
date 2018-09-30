@@ -12,6 +12,19 @@
             <div class="recipe_content">
               <h3 class="non_cursive"><%= recipe.title  %></h3>
               <p class="non_cursive"><%= User.find(recipe.user_id).username %></p>
+
+              <% if recipe.comments.length > 0 %>
+                <div class="recipe_list_rating">
+                  <% recipe.average_rating.times do |i| %>
+                    <img class="pizza_small" src="<%=asset_path('pizza_small.png') %>">
+                  <% end %>
+                  <% empty_pizza = 5 - recipe.average_rating %>
+                  <% empty_pizza.times do |i| %>
+                    <img class="pizza_small" src="<%=asset_path('pizza_empty_small.png') %>">
+                  <% end %>
+                </div>
+              <% end %>
+
               <p class="non_cursive"><%= truncate(recipe.description, :length => 150, :omission => '... (click to see more)') %></p>
               <% if !recipe.published %>
                 <p class="unpublished_tile">Unpublished - Only you can see this</p>
