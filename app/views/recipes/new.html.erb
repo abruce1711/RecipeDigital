@@ -21,9 +21,16 @@
 
           <%= f.file_field :cover, :class => 'file_field' %>
 
+          <input name='tags'>
+
           <%= f.submit 'Create Recipe', :class => 'create_recipe_button' %>
         </div>
     <% end %>
     </div>
   </div>
 </div>
+
+<script>
+    var input = document.querySelector('input[name=tags]'),
+        tagify = new Tagify( input );
+</script>
