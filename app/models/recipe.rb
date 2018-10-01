@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_many :steps
   has_many :comments
   belongs_to :user, optional: true
+  has_and_belongs_to_many :tags
   mount_uploader :cover, CoverUploader
 
   before_validation :generate_slug
@@ -44,6 +45,20 @@ class Recipe < ApplicationRecord
       (total_rating / number_of_ratings).round
     else
       0
+    end
+  end
+
+  def add_tag(tags)
+    tag_list = tags.split(',')
+
+    tag_list.each do |tag|
+      tag_content = tag.gsub(/[\W]/, '')
+      previous_tag = Tag.where(content: tag_content)
+      if previous_tag.empty?
+        self.tags.build(content: tag_content)
+      else
+        self.tags << previous_tag
+      end
     end
   end
 

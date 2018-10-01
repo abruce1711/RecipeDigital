@@ -9,7 +9,8 @@
     border:1px solid #ddd;
     padding:0;
     cursor:text;
-    position:relative
+    position:relative;
+    background-color: white;
 }
 @-webkit-keyframes tags--bump{
     30%{

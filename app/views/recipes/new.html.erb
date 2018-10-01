@@ -19,9 +19,11 @@
 
           <%= f.text_area :description, :placeholder => "Recipe Description", :required => 'required' %>
 
+          <label>Upload image</label>
           <%= f.file_field :cover, :class => 'file_field' %>
 
-          <input name='tags'>
+          <label>Add tags</label>
+          <input name='tags' placeholder="E.g. Breakfast, Vegan, Fish">
 
           <%= f.submit 'Create Recipe', :class => 'create_recipe_button' %>
         </div>

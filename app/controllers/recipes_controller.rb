@@ -43,6 +43,9 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
+    @tags = params[:tags]
+    @recipe.add_tag(@tags)
+    puts @tags
     if @recipe.save
       redirect_to @recipe
     else

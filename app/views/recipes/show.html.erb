@@ -1,4 +1,9 @@
 <% content_for :title, @recipe.title %>
+
+<% @recipe.tags.each do |tag| %>
+  <p><%= tag.content %></p>
+<% end %>
+
 <% if user_signed_in? %>
   <% if !@recipe.published && @recipe.user_id == current_user.id %>
     <div class="col-12">
