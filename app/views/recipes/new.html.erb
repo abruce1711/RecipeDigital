@@ -16,13 +16,13 @@
           <% end %>
 
           <div class="field_wrapper">
-            <label>Recipe Title</label>
-          <%= f.text_field :title, :placeholder => "What's the name of your recipe?", :required => 'required' %>
+            <label>Recipe Title *</label>
+          <%= f.text_field :title, :placeholder => "What's the name of your recipe?", :id => 'recipe_title', :required => 'required' %>
           </div>
 
           <div class="field_wrapper">
-            <label>Recipe description</label>
-            <%= f.text_area :description, :placeholder => "Tell us a little bit about it", :required => 'required' %>
+            <label>Recipe Description *</label>
+            <%= f.text_area :description, :placeholder => "Tell us a little bit about it", :id => 'recipe_description', :required => 'required' %>
           </div>
 
           <div class="field_wrapper">
@@ -31,12 +31,12 @@
           </div>
 
           <div class="field_wrapper">
-            <label>Add tags</label>
-            <input name='tags' placeholder="E.g. Breakfast, Vegan, Fish">
+            <label>Add tags *</label>
+            <input name='tags' placeholder="E.g. Breakfast, Vegan, Fish" id="recipe_tags">
           </div>
 
           <div class="button_wrapper">
-            <%= f.submit 'Create Recipe', :class => 'create_recipe_button' %>
+            <button type="button" class="create_recipe_button" onclick="check_recipe_form()">Create Recipe</button>
             <%= link_to '/' do %><button class="create_recipe_button">Cancel</button><% end %>
           </div>
         </div>

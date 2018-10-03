@@ -1,7 +1,7 @@
 <% content_for :title, "Edit #{@recipe.title}" %>
 <div class="container">
   <div class="row">
-    <%= form_for(@recipe) do |f| %>
+    <%= form_for @recipe, :html => { :id => 'new_recipe' } do |f| %>
       <div class="col-md-6 col-md-offset-3">
         <div class="new_recipe_form">
 
@@ -17,12 +17,12 @@
 
           <div class="field_wrapper">
             <label>Edit Title</label>
-            <%= f.text_field :title, :placeholder => "What's the name of your recipe?", :required => 'required' %>
+            <%= f.text_field :title, :placeholder => "What's the name of your recipe?", :id => 'recipe_title', :required => 'required' %>
           </div>
 
           <div class="field_wrapper">
             <label>Edit Description</label>
-            <%= f.text_area :description, :placeholder => "Tell us a little bit about it", :required => 'required' %>
+            <%= f.text_area :description, :placeholder => "Tell us a little bit about it",:id => 'recipe_description' ,:required => 'required' %>
           </div>
 
           <div class="field_wrapper">
@@ -32,7 +32,7 @@
 
           <div class="field_wrapper">
           <label>Edit tags</label>
-          <input name='tags' placeholder="E.g. Breakfast, Vegan, Fish" value="
+          <input name='tags' id="recipe_tags" placeholder="E.g. Breakfast, Vegan, Fish" value="
             <% @recipe.tags.each do |tag|  %>
               <%= tag.content + ','  %>
             <% end %>
@@ -40,7 +40,7 @@
           </div>
 
           <div class="button_wrapper">
-            <%= f.submit 'Save Changes', :class => 'create_recipe_button' %>
+            <button type="button" class="create_recipe_button" onclick="check_recipe_form()">Save Changes</button>
             <%= link_to @recipe do %><button class="create_recipe_button">Cancel</button><% end %>
           </div>
         </div>

@@ -7,7 +7,8 @@ class Recipe < ApplicationRecord
   mount_uploader :cover, CoverUploader
 
   before_validation :generate_slug
-  validates_presence_of :title, :description
+  validates_presence_of :title, :description, :tags, on: :create
+  validates_presence_of :title, :description, :tags, on: :update
   validate :capitalize
 
   def to_param
@@ -67,6 +68,9 @@ class Recipe < ApplicationRecord
   end
 
   def update_tags(tags)
+    if tags.count("a-zA-Z") == 0
+      return false
+    end
     # list of new tags
     parameter_list = tags.split(',')
 
@@ -74,19 +78,22 @@ class Recipe < ApplicationRecord
     current_tag_list = []
     new_tag_list = []
 
-    # loops through each current tag object
-    self.tags.each do |tag|
-      # get the content from the object and put it in the ctag list
-      current_tag_content = tag.content.gsub(/[\W]/, '')
-      current_tag_list.push(current_tag_content)
-
-      # loop through each of the tags past in
+    # loop through each of the tags past in
+    if !parameter_list.empty?
       parameter_list.each do |new_tag|
 
         # remove symbols and add to ntag list
         new_tag_content = new_tag.gsub(/[\W]/, '')
         new_tag_list.push(new_tag_content)
       end
+    end
+
+    # loops through each current tag object
+    self.tags.each do |tag|
+      # get the content from the object and put it in the ctag list
+      puts "TEST COMPLETE INSIDE LOOP"
+      current_tag_content = tag.content.gsub(/[\W]/, '')
+      current_tag_list.push(current_tag_content)
 
       # if there's a tag in our current list that's not in the new tags, remove it
       if !new_tag_list.include? current_tag_content

@@ -60,15 +60,27 @@ class RecipesController < ApplicationController
   def update
     check_recipe_owner
     @tags = params[:tags]
-    @recipe.update_tags(@tags)
-    @recipe.update(recipe_params)
-    redirect_to @recipe
+    tag_bool = true
+    if @recipe.tags.length > 0
+      if !@recipe.update_tags(@tags)
+        tag_bool = false
+      end
+    else
+      @recipe.add_tags(@tags)
+    end
+    if tag_bool
+      @recipe.update(recipe_params)
+      redirect_to @recipe
+    else
+      @recipe.errors[:base] << "Please add at least 1 tag"
+      render :edit
+    end
   end
 
   def destroy
     check_recipe_owner
     @recipe.destroy_recipe
-    redirect_to '/'
+    redirect_to '/my_recipes'
   end
 
   private
