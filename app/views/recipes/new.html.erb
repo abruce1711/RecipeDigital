@@ -15,17 +15,30 @@
             </div>
           <% end %>
 
-          <%= f.text_field :title, :placeholder => "Recipe Title", :required => 'required' %>
+          <div class="field_wrapper">
+            <label>Recipe Title</label>
+          <%= f.text_field :title, :placeholder => "What's the name of your recipe?", :required => 'required' %>
+          </div>
 
-          <%= f.text_area :description, :placeholder => "Recipe Description", :required => 'required' %>
+          <div class="field_wrapper">
+            <label>Recipe description</label>
+            <%= f.text_area :description, :placeholder => "Tell us a little bit about it", :required => 'required' %>
+          </div>
 
-          <label>Upload image</label>
-          <%= f.file_field :cover, :class => 'file_field' %>
+          <div class="field_wrapper">
+            <label>Upload image</label>
+            <%= f.file_field :cover, :class => 'file_field' %>
+          </div>
 
-          <label>Add tags</label>
-          <input name='tags' placeholder="E.g. Breakfast, Vegan, Fish">
+          <div class="field_wrapper">
+            <label>Add tags</label>
+            <input name='tags' placeholder="E.g. Breakfast, Vegan, Fish">
+          </div>
 
-          <%= f.submit 'Create Recipe', :class => 'create_recipe_button' %>
+          <div class="button_wrapper">
+            <%= f.submit 'Create Recipe', :class => 'create_recipe_button' %>
+            <%= link_to '/' do %><button class="create_recipe_button">Cancel</button><% end %>
+          </div>
         </div>
     <% end %>
     </div>
@@ -33,6 +46,12 @@
 </div>
 
 <script>
-    var input = document.querySelector('input[name=tags]'),
-        tagify = new Tagify( input );
+ var t = document.getElementsByClassName("tagify");
+ var input = document.querySelector('input[name=tags]')
+  if(t.length > 0) {
+      t[0].remove();
+      tagify = new Tagify( input );
+  } else {
+      tagify = new Tagify( input );
+  }
 </script>

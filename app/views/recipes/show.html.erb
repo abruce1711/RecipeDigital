@@ -1,14 +1,10 @@
 <% content_for :title, @recipe.title %>
 
-<% @recipe.tags.each do |tag| %>
-  <p><%= tag.content %></p>
-<% end %>
-
 <% if user_signed_in? %>
   <% if !@recipe.published && @recipe.user_id == current_user.id %>
     <div class="col-12">
       <p class="publish_desc">Your recipe is currently unpublished, meaning only you can see it while you make changes.
-        <br>Once you have completed the recipe publish it so everyone can enjoy!
+        Once you have completed the recipe publish it so everyone can enjoy!
       </p>
     </div>
   <% end %>
@@ -39,18 +35,20 @@
     <%= image_tag @recipe.cover.url, :class => 'cover_image' if @recipe.cover? %>
   </div>
 
-  <% if @recipe.comments.length > 0 %>
-    <div class="average_rating col-md-4 col-md-offset-4">
-      <h3 class="non_cursive">Average user rating</h3>
-      <% empty_pizzas = 5 - @average %>
-      <% @average.times do |i| %>
-        <img class="pizza" src="<%=asset_path('pizza.png') %>">
-      <% end %>
-      <% empty_pizzas.times do |i| %>
-        <img class="pizza" src="<%=asset_path('pizza_empty.png') %>">
-      <% end %>
-    </div>
-  <% end %>
+  <div class="row">
+    <% if @recipe.comments.length > 0 %>
+      <div class="average_rating col-md-4 col-md-offset-4">
+        <h3 class="non_cursive">Average user rating</h3>
+        <% empty_pizzas = 5 - @average %>
+        <% @average.times do |i| %>
+          <img class="pizza" src="<%=asset_path('pizza.png') %>">
+        <% end %>
+        <% empty_pizzas.times do |i| %>
+          <img class="pizza" src="<%=asset_path('pizza_empty.png') %>">
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
 
   <div class="row">
@@ -59,6 +57,19 @@
       <p class="recipe_desc non_cursive"><%= @recipe.description %></p>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="recipe_tags">
+        <% @recipe.tags.each do |tag| %>
+          <div class="recipe_tag">
+            <%= tag.content %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="ingredients col-md-5" id="ingredients">
       <h2 class="container_heading">Ingredients</h2>

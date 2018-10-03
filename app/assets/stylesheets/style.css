@@ -8,6 +8,15 @@ html body {
 .non_cursive {
     font-family: 'IBM Plex Serif', sans-serif;
 }
+label {color: white; font-weight: lighter;}
+
+.field_wrapper {
+    margin: 10px 0 10px;
+}
+
+.button_wrapper {
+    margin-top: 20px;
+}
 
 .no-text-decoration {text-decoration: none !important;}
 textarea {
@@ -114,13 +123,16 @@ nav a {
     text-decoration: none !important;
 }
 
-
-
 .new_recipe_form {
     background: #339999;
     padding: 20px;
     border-radius: 5px;
     margin-top: 15%;
+}
+
+.new_recipe_form input, .new_recipe_form textarea, .new_recipe_form tags {
+    border-radius: 3px;
+    border: none;
 }
 
 .new_recipe_form a {
@@ -133,9 +145,9 @@ nav a {
 }
 
 #recipe_title, #recipe_description {
-    width: 90%;
+    width: 100%;
     display: block;
-    font-size: 18px;
+    font-size: 15px;
     margin: 0 auto 10px;
 }
 
@@ -146,6 +158,18 @@ nav a {
 #recipe_description {
     height: 100px;
     margin-bottom: 30px;
+}
+
+.recipe_tags {
+    margin-bottom: 40px;
+}
+
+.recipe_tag {
+    background-color: #3aaaaa;
+    color: white;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 3px;
 }
 
 .cover_image {
@@ -260,6 +284,7 @@ nav a {
 .publish_button {
     background: #70DA8B;
     color: #343a40;
+    margin-bottom: 10px;
 }
 
 .unpublish_button {
@@ -299,7 +324,7 @@ nav a {
 .description {
     background: #339999;
     border-radius: 5px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     font-size: 20px;
     color: white;
 }

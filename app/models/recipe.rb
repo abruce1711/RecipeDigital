@@ -48,16 +48,65 @@ class Recipe < ApplicationRecord
     end
   end
 
-  def add_tag(tags)
-    tag_list = tags.split(',')
+  def add_tag(tag)
+    # checks if tag already exists, if not it creates it, if it does it just creates an association
+    previous_tag = Tag.where(content: tag)
+    if previous_tag.empty?
+      self.tags.build(content: tag)
+    else
+      self.tags << previous_tag
+    end
+  end
 
+  def add_tags(tags)
+    tag_list = tags.split(',')
     tag_list.each do |tag|
       tag_content = tag.gsub(/[\W]/, '')
-      previous_tag = Tag.where(content: tag_content)
-      if previous_tag.empty?
-        self.tags.build(content: tag_content)
-      else
-        self.tags << previous_tag
+      add_tag(tag_content)
+    end
+  end
+
+  def update_tags(tags)
+    # list of new tags
+    parameter_list = tags.split(',')
+
+    # empty lists for current tags and new tag content
+    current_tag_list = []
+    new_tag_list = []
+
+    # loops through each current tag object
+    self.tags.each do |tag|
+      # get the content from the object and put it in the ctag list
+      current_tag_content = tag.content.gsub(/[\W]/, '')
+      current_tag_list.push(current_tag_content)
+
+      # loop through each of the tags past in
+      parameter_list.each do |new_tag|
+
+        # remove symbols and add to ntag list
+        new_tag_content = new_tag.gsub(/[\W]/, '')
+        new_tag_list.push(new_tag_content)
+      end
+
+      # if there's a tag in our current list that's not in the new tags, remove it
+      if !new_tag_list.include? current_tag_content
+
+        # check if it only belongs to this recipe, if so delete it altogether
+        # if not just remove the association
+        if tag.recipes.length == 1
+          tag.destroy
+        else
+          self.tags.delete(tag)
+        end
+      end
+    end
+
+    # loops through the new tags
+    new_tag_list.each do |tag|
+
+      # if there's a new tag not in our list then add it
+      if !current_tag_list.include? tag
+      add_tag(tag)
       end
     end
   end

@@ -44,7 +44,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
     @tags = params[:tags]
-    @recipe.add_tag(@tags)
+    @recipe.add_tags(@tags)
     puts @tags
     if @recipe.save
       redirect_to @recipe
@@ -59,6 +59,8 @@ class RecipesController < ApplicationController
 
   def update
     check_recipe_owner
+    @tags = params[:tags]
+    @recipe.update_tags(@tags)
     @recipe.update(recipe_params)
     redirect_to @recipe
   end

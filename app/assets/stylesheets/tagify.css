@@ -62,7 +62,7 @@
     box-sizing:border-box;
     max-width:100%;
     padding:.3em .5em;
-    color:#000;
+    color: white;
     border-radius:3px;
     -webkit-transition:.13s ease-out;
     -o-transition:.13s ease-out;
@@ -88,7 +88,7 @@
     top:0;
     right:0;
     bottom:0;
-    background:#e5e5e5;
+    background:#3aaaaa;
     z-index:-1;
     pointer-events:none;
     -webkit-transition:80ms ease;
@@ -102,7 +102,7 @@
     right:-2px;
     bottom:-2px;
     left:-2px;
-    background:#d3e2e2;
+    background:#43adad;
     -webkit-box-shadow:0 0 0 0 #d39494 inset;
     box-shadow:0 0 0 0 #d39494 inset
 }
