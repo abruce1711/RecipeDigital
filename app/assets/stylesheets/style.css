@@ -580,3 +580,7 @@ nav a {
     background-color: #fc5555 !important;
     color: white !important;
 }
+
+.current_password_field {
+    margin-top: 30px;
+}

@@ -192,9 +192,9 @@ function check_comment_form() {
     var body = document.getElementById('comment_body');
 
     if (title.value.length == 0 || body.value.length == 0){
-        ok_message('Please fill in all fields', 'Please add a title and comment');
+        ok_message('', 'Please add a title and comment');
     } else if(!sessionStorage.rating_set) {
-        ok_message('Please add rating', 'Please add a rating to your comment, click on the empty pizza shapes and rate the recipe out of 5 pizzas!');
+        ok_message('', 'Please add a rating to your comment, click on the empty pizza shapes and rate the recipe out of 5 pizzas!');
     } else {
         form.submit();
     }
@@ -207,10 +207,28 @@ function check_recipe_form() {
   var tags = document.getElementById('recipe_tags');
 
   if(title.value.length == 0 || description.value.length == 0) {
-      ok_message('Please fill in all stared fields', 'Please add a title and description');
+      ok_message('', 'Please add a title and description');
   } else if (tags.value.length <= 2) {
-      ok_message('Please fill in all starred fields', 'Please add at least 1 tag');
+      ok_message('', 'Please add at least 1 tag');
   } else {
       form.submit();
   }
+}
+
+function check_account_settings_form() {
+    var form = document.getElementById('edit_user');
+    var email = document.getElementById('user_email');
+    var username = document.getElementById('user_username');
+    var password = document.getElementById('user_password');
+    var password_conf = document.getElementById('user_password_confirmation');
+    var current_password = document.getElementById('user_current_password');
+
+    if(email.value.length == 0 || username.value.length == 0) {
+        ok_message('', "Email and username can't be blank");
+    } else if (password.value != password_conf.value) {
+        ok_message('', "New password and password confirmation doesn't match");
+    } else if (current_password.value == ""){
+        ok_message('', "Please enter your current password to save changes");
+        current_password.style.border= "1px solid #fc5555";
+    }
 }
