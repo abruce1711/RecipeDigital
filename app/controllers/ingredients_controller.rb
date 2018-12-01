@@ -11,12 +11,7 @@ class IngredientsController < ApplicationController
     @ingredient = Ingredient.new(ingredient_params)
     @step = Step.new
     if @ingredient.save
-      @ingredient = Ingredient.new
-      @step = Step.new
-      @user = User.find(@recipe.user_id)
-      @comment = Comment.new
-      @average = @recipe.average_rating
-      render 'recipes/show'
+      # load view with js
     else
       flash[:alert] = "Error in ingredients form"
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')

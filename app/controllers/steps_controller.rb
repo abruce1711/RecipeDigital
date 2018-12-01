@@ -7,7 +7,7 @@ class StepsController < ApplicationController
     @step = Step.new(step_params)
     @ingredient = Ingredient.new
     if @step.save
-      redirect_to recipe_path(@recipe, :anchor => 'steps')
+      # load step with js
     else
       flash[:error] = "Error in ingredients form"
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')

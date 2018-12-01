@@ -1,0 +1,67 @@
+<div class="comments col-md-12">
+  <h2 class="container_heading">Comments</h2>
+  <% if @recipe.comments.length > 0 %>
+    <% @recipe.comments.each do |comment|%>
+      <div class="comment non_cursive">
+        <h3 class="comment_title"><%= comment.title %></h3><p class="comment_user"> - <%= link_to '@' + comment.user.username, comment.user %></p>
+
+        <div class="rating">
+          Rating<br>
+          <% comment.rating.times do |i| %>
+            <img class="pizza_small" src="<%=asset_path('pizza_small.png') %>">
+          <% end %>
+          <% empty_pizza = 5 - comment.rating %>
+          <% empty_pizza.times do |i| %>
+            <img class="pizza_small" src="<%=asset_path('pizza_empty_small.png') %>">
+          <% end %>
+        </div>
+
+        <p class="comment_date"><%= comment.created_at.strftime("%d %B %Y") %></p>
+
+        <p class="comment_body"><%= comment.body %></p>
+
+        <% if user_signed_in? && current_user.id == comment.user_id %>
+          <%= link_to 'Delete Comment', comment, method: :delete, :class => 'delete_button comment_delete',
+                      data: {confirm: "Are you sure you want to delete your comment? This can not be un-done"} %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="non_cursive no_comments">No comments yet, be the first to leave on below!</p>
+  <% end %>
+
+  <h2 class="container_heading">Leave a comment</h2>
+
+  <% if @comment.errors.any? %>
+    <div class="form_error">
+      <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for Comment.new, :html => {:id => "comment_form"} do |f| %>
+    <div class="comment_form non_cursive col-md-6 col-md-offset-3">
+      <h4>Title</h4>
+      <%= f.text_field :title, :placeholder => 'Title', :required => 'required', :class => 'comment_title_field', :id => 'comment_title' %>
+
+      <h4>Your comment</h4>
+      <%= f.text_area :body, :placeholder => 'Comment', :required => 'required', :class => 'comment_body_field', :id => 'comment_body' %>
+
+      <h4>How do you rate this recipe?</h4>
+      <img class="pizza" id="pizza_1" onclick="rating_click('pizza_1')" onmouseover="rating_hover('pizza_1')" onmouseout="rating_mouse_off() " src="<%=asset_path('pizza_empty.png') %>">
+      <img class="pizza" id="pizza_2" onclick="rating_click('pizza_2')" onmouseover="rating_hover('pizza_2')" onmouseout="rating_mouse_off()" src="<%=asset_path('pizza_empty.png') %>">
+      <img class="pizza" id="pizza_3" onclick="rating_click('pizza_3')" onmouseover="rating_hover('pizza_3')" onmouseout="rating_mouse_off()" src="<%=asset_path('pizza_empty.png') %>">
+      <img class="pizza" id="pizza_4" onclick="rating_click('pizza_4')" onmouseover="rating_hover('pizza_4')" onmouseout="rating_mouse_off()" src="<%=asset_path('pizza_empty.png') %>">
+      <img class="pizza" id="pizza_5" onclick="rating_click('pizza_5')" onmouseover="rating_hover('pizza_5')" onmouseout="rating_mouse_off()" src="<%=asset_path('pizza_empty.png') %>">
+
+      <%= f.hidden_field :rating, :id => 'rating', :required => 'required' %>
+
+      <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+
+      <button type="button" class="non_cursive create_recipe_button comment_submit" onclick="check_comment_form()">Add Comment</button>
+    </div>
+  <% end %>
+</div>

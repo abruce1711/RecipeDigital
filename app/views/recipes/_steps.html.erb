@@ -1,0 +1,63 @@
+<div class="steps col-md-6" id="steps">
+  <h2 class="container_heading">Steps</h2>
+  <% if @recipe.steps.length == 0 %>
+    <p class="content">No steps have been added!</p>
+  <% else %>
+    <% @recipe.steps.each do |step| %>
+      <div <% if step.id%2 == 0 %>class="even_step"<% else %>class="odd_step"<% end %>>
+        <p class="content non_cursive" id="<%= "step_#{step.id}" %>">* <%= step.content %> </p>
+
+        <% if user_signed_in? && current_user.id == @recipe.user_id %>
+          <% if @recipe.user_id == current_user.id %>
+            <%= form_for step, :html => {:id =>  "edit_step_#{step.id}"} do |f| %>
+
+              <% if @step.errors.any? %>
+                <div class="form_error">
+                  <ul>
+                    <% @step.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <%= f.text_field :content, :placeholder => 'Step', :required => 'required' %>
+              <%= f.submit 'Save', :class => 'submit_buttons' %>
+              <button type="button" class="submit_buttons" onclick='cancel_step_edit(<%= "#{step.id}" %>)'>Cancel</button>
+            <% end %>
+            <div class="content_buttons" id="step_buttons_<%= "#{step.id}" %>">
+              <button type="button" class="edit_button edit_step_button" onclick='edit_step(<%= "#{step.id}" %>)'>Edit</button>
+              <%= link_to 'Delete', step, method: :delete, :class => 'delete_button'%>
+            </div>
+          <% end %>
+        <% end %>
+
+        <br>
+      </div>
+    <% end %>
+  <% end %>
+  <% if user_signed_in? && current_user.id == @recipe.user_id %>
+    <%= form_for Step.new, remote: true do |f| %>
+      <div class="steps_form">
+
+        <% if @step.errors.any? %>
+          <div class="form_error">
+            <ul>
+              <% @step.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= f.text_field :content, :placeholder => 'Step', :required => 'required' %>
+
+        <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+      </div>
+      <div>
+        <%= f.submit 'Add step +', :class => 'submit_buttons' %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

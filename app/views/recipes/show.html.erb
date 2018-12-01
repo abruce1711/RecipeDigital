@@ -71,199 +71,22 @@
   </div>
 
   <div class="row">
-    <div class="ingredients col-md-5" id="ingredients">
-      <h2 class="container_heading">Ingredients</h2>
-
-      <% if @recipe.ingredients.length == 0 %>
-        <p class="content">No ingredients have been added!</p>
-      <% else %>
-        <% @recipe.ingredients.each do |ingredient| %>
-          <div <% if ingredient.id%2 == 0 %>class="even_ingredient"<% else %>class="odd_ingredient"<% end %>>
-            <% if ingredient.measurement == 'N/A' %>
-              <p class="content non_cursive" id="<%= "ingredient_#{ingredient.id}" %>">* <%= "%g" % ingredient.amount.to_s + " " + ingredient.item %></p>
-            <% else %>
-              <p class="content non_cursive" id="<%= "ingredient_#{ingredient.id}" %>">* <%= "%g" % ingredient.amount.to_s + ingredient.measurement + " " + ingredient.item %></p>
-            <% end %>
-
-            <% if user_signed_in? && current_user.id == @recipe.user_id %>
-              <% if @recipe.user_id == current_user.id %>
-                <%= form_for ingredient, :html => {:id =>  "edit_ingredient_#{ingredient.id}"} do |f| %>
-                  <%= f.text_field :item, :required => 'required' %>
-                  <%= f.number_field :amount, min: 0, :placeholder => 'Amount', :required => 'required', :step => 0.25 %>
-                  <%= f.select :measurement, %w(N/A g kg oz ml L cup(s)), {:include_blank => 'Measurement'}, :required => true %>
-                  <br>
-                  <!--<%= f.submit 'Save', :class => 'submit_buttons' %>-->
-
-                  <%= f.submit 'Save', :class => 'submit_buttons' %>
-                  <button type="button" class="submit_buttons" onclick='cancel_ingredient_edit(<%= "#{ingredient.id}" %>)'>Cancel</button>
-                <% end %>
-
-                <div class="content_buttons" id="ingredient_buttons_<%= "#{ingredient.id}" %>">
-                  <button type="button" class="edit_button edit_step_button" onclick='edit_ingredient(<%= "#{ingredient.id}" %>)'>Edit</button>
-                  <%= link_to 'Delete', ingredient, method: :delete, :class => 'delete_button'%>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-          <br>
-        <% end %>
-      <% end %>
-      <% if user_signed_in? %>
-        <% if @recipe.user_id == current_user.id %>
-          <%= form_for @ingredient do |f| %>
-            <div class="ingredients_form">
-
-              <%= f.text_field :item, :placeholder => 'Item', :required => 'required' %>
-
-              <%= f.number_field :amount, min: 0, :placeholder => 'Amount', :required => 'required', :step => 0.25 %>
-
-              <%= f.select :measurement, %w(N/A g kg oz ml L cup(s)), {:include_blank => 'Measurement'}, :required => true %>
-
-              <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-            </div>
-            <div>
-              <%= f.submit 'Add Ingredient +', :class => 'submit_buttons' %>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
+    <div id="ing_container">
+      <%= render 'ingredients' %>
     </div>
 
     <div class="col-md-1"></div>
 
-    <div class="steps col-md-6" id="steps">
-    <h2 class="container_heading">Steps</h2>
-    <% if @recipe.steps.length == 0 %>
-      <p class="content">No steps have been added!</p>
-    <% else %>
-      <% @recipe.steps.each do |step| %>
-        <div <% if step.id%2 == 0 %>class="even_step"<% else %>class="odd_step"<% end %>>
-          <p class="content non_cursive" id="<%= "step_#{step.id}" %>">* <%= step.content %> </p>
-
-          <% if user_signed_in? && current_user.id == @recipe.user_id %>
-            <% if @recipe.user_id == current_user.id %>
-              <%= form_for step, :html => {:id =>  "edit_step_#{step.id}"} do |f| %>
-
-                  <% if @step.errors.any? %>
-                    <div class="form_error">
-                      <ul>
-                        <% @step.errors.full_messages.each do |msg| %>
-                          <li><%= msg %></li>
-                        <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-
-                  <%= f.text_field :content, :placeholder => 'Step', :required => 'required' %>
-                  <%= f.submit 'Save', :class => 'submit_buttons' %>
-                  <button type="button" class="submit_buttons" onclick='cancel_step_edit(<%= "#{step.id}" %>)'>Cancel</button>
-              <% end %>
-                <div class="content_buttons" id="step_buttons_<%= "#{step.id}" %>">
-                  <button type="button" class="edit_button edit_step_button" onclick='edit_step(<%= "#{step.id}" %>)'>Edit</button>
-                  <%= link_to 'Delete', step, method: :delete, :class => 'delete_button'%>
-                </div>
-            <% end %>
-          <% end %>
-
-          <br>
-        </div>
-      <% end %>
-    <% end %>
-    <% if user_signed_in? && current_user.id == @recipe.user_id %>
-      <%= form_for @step do |f| %>
-        <div class="steps_form">
-
-          <% if @step.errors.any? %>
-            <div class="form_error">
-              <ul>
-                <% @step.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-
-          <%= f.text_field :content, :placeholder => 'Step', :required => 'required' %>
-
-          <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-        </div>
-        <div>
-          <%= f.submit 'Add step +', :class => 'submit_buttons' %>
-        </div>
-      <% end %>
-    <% end %>
-
-  </div>
+    <div id="steps_container">
+      <%= render 'steps' %>
+    </div>
   </div>
 
   <div class="row">
-    <div class="comments col-md-12">
-      <h2 class="container_heading">Comments</h2>
-      <% if @recipe.comments.length > 0 %>
-        <% @recipe.comments.each do |comment|%>
-          <div class="comment non_cursive">
-            <h3 class="comment_title"><%= comment.title %></h3><p class="comment_user"> - <%= link_to '@' + comment.user.username, comment.user %></p>
-
-            <div class="rating">
-              Rating<br>
-              <% comment.rating.times do |i| %>
-                <img class="pizza_small" src="<%=asset_path('pizza_small.png') %>">
-              <% end %>
-              <% empty_pizza = 5 - comment.rating %>
-              <% empty_pizza.times do |i| %>
-                <img class="pizza_small" src="<%=asset_path('pizza_empty_small.png') %>">
-              <% end %>
-            </div>
-
-            <p class="comment_date"><%= comment.created_at.strftime("%d %B %Y") %></p>
-
-            <p class="comment_body"><%= comment.body %></p>
-
-            <% if user_signed_in? && current_user.id == comment.user_id %>
-              <%= link_to 'Delete Comment', comment, method: :delete, :class => 'delete_button comment_delete',
-                          data: {confirm: "Are you sure you want to delete your comment? This can not be un-done"} %>
-            <% end %>
-          </div>
-        <% end %>
-      <% else %>
-        <p class="non_cursive no_comments">No comments yet, be the first to leave on below!</p>
-      <% end %>
-
-      <h2 class="container_heading">Leave a comment</h2>
-
-      <% if @comment.errors.any? %>
-        <div class="form_error">
-          <ul>
-            <% @comment.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <%= form_for @comment, :html => {:id => "comment_form"} do |f| %>
-        <div class="comment_form non_cursive col-md-6 col-md-offset-3">
-          <h4>Title</h4>
-          <%= f.text_field :title, :placeholder => 'Title', :required => 'required', :class => 'comment_title_field', :id => 'comment_title' %>
-
-          <h4>Your comment</h4>
-          <%= f.text_area :body, :placeholder => 'Comment', :required => 'required', :class => 'comment_body_field', :id => 'comment_body' %>
-
-          <h4>How do you rate this recipe?</h4>
-          <img class="pizza" id="pizza_1" onclick="rating_click('pizza_1')" onmouseover="rating_hover('pizza_1')" onmouseout="rating_mouse_off() " src="<%=asset_path('pizza_empty.png') %>">
-          <img class="pizza" id="pizza_2" onclick="rating_click('pizza_2')" onmouseover="rating_hover('pizza_2')" onmouseout="rating_mouse_off()" src="<%=asset_path('pizza_empty.png') %>">
-          <img class="pizza" id="pizza_3" onclick="rating_click('pizza_3')" onmouseover="rating_hover('pizza_3')" onmouseout="rating_mouse_off()" src="<%=asset_path('pizza_empty.png') %>">
-          <img class="pizza" id="pizza_4" onclick="rating_click('pizza_4')" onmouseover="rating_hover('pizza_4')" onmouseout="rating_mouse_off()" src="<%=asset_path('pizza_empty.png') %>">
-          <img class="pizza" id="pizza_5" onclick="rating_click('pizza_5')" onmouseover="rating_hover('pizza_5')" onmouseout="rating_mouse_off()" src="<%=asset_path('pizza_empty.png') %>">
-
-          <%= f.hidden_field :rating, :id => 'rating', :required => 'required' %>
-
-          <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-
-          <button type="button" class="non_cursive create_recipe_button comment_submit" onclick="check_comment_form()">Add Comment</button>
-        </div>
-      <% end %>
+    <div id="comments_container">
+      <%= render 'comments' %>
     </div>
+
   </div>
 
 </div>

@@ -15,8 +15,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=IBM Plex Serif' rel='stylesheet'>
-    <script src="tagify.js"></script>
-    <script src="tagify.polyfills.js"></script>
+    <script type="text/javascript" src="tagify.js"></script>
+    <script type="text/javascript" src="tagify.polyfills.js"></script>
+    <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
@@ -91,6 +92,7 @@
       <a href="mailto:contact@recipedigital.com?Subject=Contact%20from%20website" style = "padding-left: 1em;">contact@recipedigital.com</a><br>
     </div>
   </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   </body>
   <script>
       /* Gets current year for footer ----*/
