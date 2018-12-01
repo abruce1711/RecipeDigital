@@ -17,13 +17,12 @@ class StepsController < ApplicationController
   def destroy
     check_recipe_owner
     @step.destroy
-    redirect_to recipe_path(@recipe, :anchor => 'steps')
   end
 
   def update
     check_recipe_owner
     if @step.update(step_params)
-      redirect_to recipe_path(@recipe, :anchor => 'steps')
+      # update with js
     else
       flash[:error] = "Error in ingredients form"
       redirect_to recipe_path(@recipe, :anchor => 'ingredients')

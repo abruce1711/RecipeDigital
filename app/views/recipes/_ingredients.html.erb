@@ -14,7 +14,7 @@
 
         <% if user_signed_in? && current_user.id == @recipe.user_id %>
           <% if @recipe.user_id == current_user.id %>
-            <%= form_for ingredient, :html => {:id =>  "edit_ingredient_#{ingredient.id}"} do |f| %>
+            <%= form_for ingredient, remote: true, :html => {:id =>  "edit_ingredient_#{ingredient.id}"} do |f| %>
               <%= f.text_field :item, :required => 'required' %>
               <%= f.number_field :amount, min: 0, :placeholder => 'Amount', :required => 'required', :step => 0.25 %>
               <%= f.select :measurement, %w(N/A g kg oz ml L cup(s)), {:include_blank => 'Measurement'}, :required => true %>
@@ -27,7 +27,7 @@
 
             <div class="content_buttons" id="ingredient_buttons_<%= "#{ingredient.id}" %>">
               <button type="button" class="edit_button edit_step_button" onclick='edit_ingredient(<%= "#{ingredient.id}" %>)'>Edit</button>
-              <%= link_to 'Delete', ingredient, method: :delete, :class => 'delete_button'%>
+              <%= link_to 'Delete', ingredient, remote: true, method: :delete, :class => 'delete_button'%>
             </div>
           <% end %>
         <% end %>

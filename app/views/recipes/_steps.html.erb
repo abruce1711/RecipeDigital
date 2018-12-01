@@ -9,7 +9,7 @@
 
         <% if user_signed_in? && current_user.id == @recipe.user_id %>
           <% if @recipe.user_id == current_user.id %>
-            <%= form_for step, :html => {:id =>  "edit_step_#{step.id}"} do |f| %>
+            <%= form_for step, remote: true, :html => {:id =>  "edit_step_#{step.id}"} do |f| %>
 
               <% if @step.errors.any? %>
                 <div class="form_error">
@@ -27,7 +27,7 @@
             <% end %>
             <div class="content_buttons" id="step_buttons_<%= "#{step.id}" %>">
               <button type="button" class="edit_button edit_step_button" onclick='edit_step(<%= "#{step.id}" %>)'>Edit</button>
-              <%= link_to 'Delete', step, method: :delete, :class => 'delete_button'%>
+              <%= link_to 'Delete', step, remote: true, method: :delete, :class => 'delete_button'%>
             </div>
           <% end %>
         <% end %>
